@@ -1,0 +1,86 @@
+%File:  TRACE.LIB  (c)		06/26/80	The Soft Warehouse %
+
+(SETQ ECHO)
+
+% Function TRACE takes an arbitrary number of function names and
+redefines them to provide a trace for debugging purposes.  The
+trace consists of printing the function name and arguments when
+called and the returned value after evaluation.  Indenting is
+used to more easily match corresponding calls and returns.  Only
+LAMBDA and NLAMBDA defined functions are permitted to be traced. %
+
+(PROG1 ""
+  (PUTD DEFUN (QUOTE (NLAMBDA (FUNC DEF)
+    (PUTD FUNC DEF)
+    FUNC ))) )
+
+(DEFUN TRACE (LAMBDA LST
+  (SETQ INDENT 0)
+  (MAPC LST (QUOTE (LAMBDA (FUN BODY FUN#)
+    (SETQ BODY (GETD FUN))
+    (SETQ FUN# (PACK (LIST FUN #)))
+    (MOVD FUN FUN#)
+    ((MEMBER (CAR BODY) (QUOTE (LAMBDA NLAMBDA)))
+      (PUTD FUN (LIST (CAR BODY) (CADR BODY)
+	(LIST EVTRACE FUN (CADR BODY) FUN#) )) )
+    (PRIN1 FUN)
+    (PRINT " is not a LAMBDA defined function") )) ) ))
+
+
+% Function UNTRACE restores the traced functions in its arguments
+to their previous definitions. %
+
+(DEFUN UNTRACE (LAMBDA LST
+  (MAPC LST (QUOTE (LAMBDA (FUN FUN#)
+    (SETQ FUN# (PACK (LIST FUN #)))
+    ((GETD FUN#)
+      (MOVD FUN# FUN)
+      (MOVD NIL FUN#) ) ))) ))
+
+(DEFUN EVTRACE (NLAMBDA (FUN ARGS FUN#)
+  (PRTARGS FUN ARGS)
+  (PRTRSLT FUN (APPLY FUN# (MAKARGS ARGS))) ))
+
+(DEFUN PRTARGS (LAMBDA (FUN ARGS)
+  (SPACES INDENT)
+  (SETQ INDENT (PLUS INDENT 1))
+  (PRIN1 FUN)
+  (PRIN1 " [")
+  ((NULL ARGS)
+    (PRINT "]") )
+  (LOOP
+    ((ATOM ARGS)
+      (SETQ ARGS (EVAL ARGS))
+      (LOOP
+        (PRIN1 (CAR ARGS))
+	(SETQ ARGS (CDR ARGS))
+	((ATOM ARGS))
+	(PRIN1 ", ") ) )
+    (PRIN1 (EVAL (CAR ARGS)))
+    (SETQ ARGS (CDR ARGS))
+    ((NULL ARGS))
+    (PRIN1 ", ") )
+  (PRINT "]") ))
+
+(DEFUN PRTRSLT (LAMBDA (FUN RSLT)
+  (SETQ INDENT (DIFFERENCE INDENT 1))
+  (SPACES INDENT)
+  (PRIN1 FUN)
+  (PRIN1 " = ")
+  (PRINT RSLT)
+  RSLT ))
+
+(DEFUN MAKARGS (LAMBDA (ARGS)
+  ((NULL ARGS) NIL)
+  ((ATOM ARGS)
+    (EVAL ARGS) )
+  (CONS (EVAL (CAR ARGS)) (MAKARGS (CDR ARGS))) ))
+
+(DEFUN MAPC (LAMBDA (LST FUNC)
+  (LOOP
+    ((NULL LST) NIL)
+    (FUNC (CAR LST))
+    (SETQ LST (CDR LST)) ) ))
+
+(RDS)
+

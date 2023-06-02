@@ -1,0 +1,8 @@
+cc $1
+ccopt $1
+zsm $1
+hextocom $1
+$1
+era $1.hex
+era $1.prn
+era $1.zsm

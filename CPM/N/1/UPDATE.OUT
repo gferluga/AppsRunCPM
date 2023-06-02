@@ -1,0 +1,218 @@
+			  MANUAL ERRATA
+			  -------------
+
+Add the following section as page 8-A:
+
+COMPUTER CUSTOMIZATION:
+
+Customization  to  specific computer system hardware  is  largely 
+confined  to certain terminal dependent features that are invoked 
+by  a specified code sequence.
+
+Please	refer  to the file HEATH.H and NEC.H for  definitions  of 
+these  codes as applied to the Zenith/Heath and NEC APC  computer 
+systems,  respectively.   Please  refer to your specific computer 
+manuals  for  equivalent codes and then modify and  rename  these 
+definition  files  appropriately.   Many of the examples  do  not 
+include  these preprocessor definition files,  but rather contain 
+the  computer dependent code sequence within the main program  or 
+function itself.   This is done largely for tutorial purposes and 
+therefor,  such code is not extensive, can be easily isolated and
+modified before compiling.
+
+If  you  compile and run examples that contain screen codes  that 
+are  not  compatible,  the worst that will usually  happen  is	a 
+display  of inappropriate symbols or characters on the screen and 
+otherwise  the	program will still run	correctly.   Many  screen 
+character  codes  are identical between  computer  systems.   For 
+example  decimal code 007 used in EX00.C to ring the bell on  the 
+Zenith/Heath will beep on the IBM PC, etc.
+
+Character  codes  for block graphics as used on  the  Zenith  are 
+minimal,  since  most other microcomputers either do not  provide 
+them or the range of shapes is rather limited.	 Similarly, func-
+tion  key and extended character key codes are excluded in  these 
+examples.  The inclusion, however, of appropriate fundamentals of 
+C  language facilities,  and a minimum amount of screen codes for 
+ZENITH/HEATH  and  NEC APC provide excellent  models  from  which 
+specific customization may be derived.	
+
+The  following list identifies some basic (first occurrence)  ex-
+amples	and  modifications that might be required to  accommodate 
+different computer systems:
+
+	   EX05.C - \033E to clear the screen
+	   EX07.C - \033p and \033q for reverse video
+	   EX18.C - \033Y for direct cursor addressing
+	   EX21.C - \033F and \033G for block graphics
+	   EX22.C - Heath terminal codes, see HEATH.H
+	   EX50.C - Color codes for Z/H100
+	   EX51.C - Color for NEC APC
+
+
+Page 8: Add the following paragraph to the section PREPROCESSORS: 
+at top of page:
+
+   Some  compilers  will  not handle  definitions  duplicated  by 
+   additional included files. For example, if
+
+
+			  #define YES 1
+
+   occurs in two .h files, e.g. heath.h and defs.h, both included 
+
+   at the top of your file, the compiler will complain.
+
+=================================================================
+
+C LIBRARIES . . . . . . . write for availability and price list.
+
+EWTMATH.LIB . . . . . . . . . .  . . . . . . . . . . . . . . . .
+Requires Zenith/Heath Z-100, CI-C86, and either CP/M or ZDOS.
+A  linkable  library  for a generalized solution of  the  finance 
+equation  and  other  special math  functions  required  in  many
+business programs.
+
+EWTSCI.LIB . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+Requires Zenith/Heath Z-100, CI-C86, and either CP/M or ZDOS.	 
+A  linkable  library for special math functions required in  many
+scientific and engineering applications programs.
+
+EWTGRAPH.LIB . . . . . . . . . . . . . . . . . . . . . . . . . . 
+A  linkable library for essential  graphic  functions.	 Requires
+Zenith/Heath Z-100, CI-C86, and ZDOS.
+
+=================================================================
+
+LUCIDATA PASCAL by Polybytes . . . . . . . . . . . . . . . $55.00
+
+Requires a Zenith/Heath computer  system.			 
+
+A  P-code  Pascal  compiler  for HDOS 1.5,1.6,2.0  or  CP/M  2.x.
+Includes two run time systems one for 8080/8085 and the other for
+Z80,  a  large	selection  of  demonstration  source  codes,  and
+excellent documentation.  Specific features include:
+     
+- optimized run time system
+- random and sequential files
+- paging mode for compiling large programs on small computers
+- 9 digit floating point and 16 bit integer precision
+- Stand alone program generation, i.e. .COM file
+- recursion to any level
+- fully typed variables, any type passed by value
+- calls nested to 15 levels
+- Conversion and format control
+- FORWARD referencing of procedures/functions
+- Supports external functions and procedures
+- Supports assembly language functions
+- Supports integration of device drivers
+- $INCLUDE for external files at compile
+- $STACK and $ADDRESS for space allocation
+- $L for control of source listings
+- Compile time error control
+- Built in routines to access hardware features
+
+
+			LANGUAGE SUMMARY
+
+CONSTANTS: integer, real, char, boolean
+
+TYPES:	byte,  alpha,  set,  integer,  real, boolean, char, enum-
+erated,  subrange,  set,  array,  record, file, pointer, and user
+
+defined.
+
+FUNCTIONS and PROCEDURES:  abs,  card,	chr, eof, eoln, mod, odd,
+ord,  peek,  poke,  pred,  succ, round, sqr, sqrt, trunc, unpack,
+user,  inport,	new,  mark,  release,  sort,  sin,  cos, exp, ln,
+arctan,  halt,	overlay,  assign, reset, rewrite, position, read,
+write, readln, writeln, and user defined.
+
+STATEMENTS:  case, otherwise, begin..end, if...then...else, goto,
+while...do, repeat...until, for...do, downto...do
+
+SYMBOLS:  + plus,  * times,  = equals,	,  comma, : colon, < less
+than, <= less than or equal, <> not equal, ( left parenth, [ left
+bracket,  (* open comment,  { open comment,  ' quote,  - minus, /
+slash,	:= becomes,  ;	semicolon,  ..	up to, > greater than, >=
+greater than or equal,	. decimal point, ) right parenth, ] right
+bracket,  *) close comment, } close comment, ^ up arrow, _ under-
+score, $ prefix hex constant or pragmat sequence.
+
+RESERVED  WORD SYMBOLS:  and array begin case const div downto do
+else  end  file for function goto if in label mod nil not  of  or
+procedure program record repeat set then to type until var while.
+
+TRANSLATE for LUCIDATA PASCAL  . . . . . . . . . . . . . . $25.00
+
+Translat  converts  p-codes files into series of  macro-assembler
+statements  for  input	to  Microsoft's  M80  assembler.    After
+assembling and linking the output from Translat,  you will have a
+machine  code  program with execution speed generally  more  than
+twice  as  fast as the original p-code version.   For  the  SIEVE
+benchmark  on the H100 with CP/M 85,  the following results  were
+obtained:
+
+Lucidata Pascal Translate	    166.6 secs. 	 9 KBytes
+Lucidata Pascal P-Code		    489.6 secs. 	19 KBytes
+MBASIC Interpreter		   1800.0		25 KBytes
+
+Note  the  Sieve program for the p-code case was bound	with  the
+runtime system into a .COM 19 KByte file.  
+
+Requires   Polybytes'	Lucidata  V3.8x  (for  CP/M   or   HDOS),
+Microsoft's Macro-80 Assembler Package (M80/L80),  and a  minimum
+disk configuration of 2 single density disk drives.
+
+
+Graphics/Sound/Math Support Package . . . . . . . . . . .  $25.00
+
+The  color graphics package supports the arithmetic processor and
+the color graphics H8-3/9511 board.   This software package  will
+allow  you  to control the sound generator and	graphics  monitor
+with  Lucidata	Pascal;  you can handle most programming  details
+at a higher level.
+
+Requirements for Lucidata Software:
+32K RAM or higher,  HDOS 1.5 or higher,  CP/M 2.0 or higher,  Two 
+
+single density disk drives.  Heath/Zenith computer system.
+=================================================================
+
+DISCOVERING PASCAL WITH A FINANCIAL CALCULATOR . . . . . . $24.95
+
+The  following	package with its programming tutorial provides	a 
+useful and completed program as well as a library of source codes 
+for customization and development of other applications:
+
+A  programming tutorial on the application of Pascal for accurate
+financial analyses.  The financial calculator is chosen to demon-
+strate	the advantage of Pascal programming and how H/Z  computer
+features are implemented with this language.  Applicable H/Z com-
+patible  language processors include Lucidata and  the	IBM(MDOS) 
+implementations.  A  source code library of procedures and  func-
+tions, similar to those used for A COMPLETE FINANCIAL CALCULATOR,
+is provided on disk.  Requires Heath/Zenith computer system, 32K, 
+CP/M 2.0+.  
+
+A COMPLETE FINANCIAL CALCULATOR . . . . . . . . . . . . .  $19.95
+Provides  "what-if",  on-screen analysis of time-valued financial
+transactions.	It  is a highly accurate program that  simplifies
+the solution of complex financial analyses.   Interactive  selec-
+tion  of financial parameters include ordinary	annuity,  annuity
+due,  continuous compounding,  discrete compounding,  compounding
+frequency  and	payment frequency Any one of the  five	financial
+variables,  time period,  interest rate, payments, present value,
+and future value are returned for keyboard entry of the remaining
+four  variables  and selected transaction  parameters.	 Includes
+function key print commands for selected solutions and	amortiza-
+tion  schedules.  Requires Heath/Zenith computer system with CP/M
+2.0 or higher,	32K RAM or larger, and one (two preferred) single
+density disk drives.  Available in either CP/M(80 and 85) or ZDOS
+version and disk format.
+	  
+
+		     EIGENWARE TECHNOLOGIES
+		     13090  LA VISTA  DRIVE
+		     SARATOGA,	CA    95070
+M   or   HDOS)

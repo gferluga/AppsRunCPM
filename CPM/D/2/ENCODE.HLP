@@ -1,0 +1,322 @@
+	 Documentation For ENCODE Version 1.05  3/20/85
+
+	      Copyright (C) 1985 by Merlin R. Null
+
+
+     ENCODE is pseudo compiler for dBASE II version 2.4 or higher
+command files.   Programs encoded with ENCODE will run  with  the
+regular version of dBASE II version 2.4 or higher.  Ashton-Tate's
+RUNTIME is not required, although it could be  used.   RUNTIME is
+simply an amputated version of dBASE II that only has the ability
+to run programs, not edit them.
+
+
+    The ENCODE library should contain the following files:
+
+ENCODE.COM	ENCODE, pseudo compiles dBASE II command files
+		to run up to 30% faster.
+ENCODE.BAS	The MBASIC source for the above program.
+ENCODE.HLP	Help file for ENCODE.
+ENCODE.DOC	This documentation on ENCODE.
+
+
+************    ENCODE.COM  is  a  stand  alone  compiled  MBASIC
+*   NOTE   *    program.   BRUN.COM, the Microsoft compiled basic
+************	runtime  package  is  NOT  required.   ENCODE.BAS
+		requires the  MBASIC  interpreter  to  run.   The
+		compiled version is in 8080 code.  It will run on
+		an 8080 or Z80 machine.
+
+
+			  Installation
+
+     To install  ENCODE,  just  run  the  program.   It  is  self
+installing.  If the clear screen data file,  CLS.DAT,  is missing
+on the disk with ENCODE, a new one will be  generated.   You will
+be asked for the decimal values of your  clear  screen  sequence. 
+For example, on a KayPro or Osborne CP/M machine just enter:
+
+Clear screen character 1? 26
+Clear screen character 2? <RETURN>
+
+CLS.DAT will  then  be  written  and  you  will  go  directly  to
+operation of ENCODE.  If the title screen is preceeded by a clear
+screen, the installation was  successful.  If  the  title  screen
+scrolls on, it failed.   If it fails,  exit  the  program,  erase
+CLS.DAT, and run ENCODE again. If you don't like the clear screen
+function, simply enter  10  when  asked  for  your  clear  screen
+sequence.   For each 10 you enter ENCODE will scroll one line  in
+place of the clear screen.   My  older  program,  CLEARSET,  will
+still generate a correct CLS.DAT for this version of ENCODE.
+
+
+		   Calling a Directory Listing
+
+     To call a directory from the title screen simply  enter  the
+drive you wish to list.
+
+Filename.SRC or Drive:? A:
+
+   This will list the directory of drive A and give the prompt
+again.
+
+Directory of drive A:
+FOO	.CMD	DBSOURCE.BAS	DBSOURCE.COM	TEST2	.CMD	A10	.CMD
+ENCODE  .BAS	ENCODE  .COM	MBASIC	.COM	D	.COM	SAMPLE	.CMD
+BOOKS	.DBF	BOOKS	.FRM	DBASE	.COM	CLS	.DAT	CLEARSET.BAS
+CLEARSET.COM	DBASEMSG.TXT	DBASEOVR.COM	B4	.CMD	R2D2	.CMD
+DBINDENT.BAS	DBINDENT.COM	ELIZA	.BAS	A10	.SRC	A10	.BAK
+CLONE	.CMD	TEST	.CMD	CLONE	.SRC	A10	.OLD	DBSRC2	.BAS
+DBSRC2	.COM
+Filename.CMD or Drive:?
+
+    The  ZCPR like drive call of A; will also work  to  call  the
+directory, even if you are not running  ZCPR.   The  Filename.CMD
+may be entered here  or  a  <RETURN>  will  redisplay  the  start
+screen.
+
+
+			 Encoding a File
+
+     A file to be encoded MUST have  the  extension  .SRC.   Just
+rename your  source  file  to  <filename>.SRC.   Then  enter  the
+<filename>.SRC  at the ENCODE prompt:
+
+Filename.SRC or Drive:? SAMPLE.SRC
+
+     ENCODE requires all characters in the input  file  have  the
+8th bit set low.   You may have to run your source file through a
+filter, like UNSOFT.
+
+     ENCODE creates a partially tokenized file that  can  not  be
+listed with anything but DBSOURCE or a commercial decoder.  It is
+also hard to modify a command file protected  with  ENCODE.   The
+file is reduced in size as all indenting and comments preceded by
+* are removed.  In addition comments after the END statements are
+removed.  Example:
+
+ENDIF .NOT. green
+
+     Becomes a single byte for  the  reserved  word  ENDIF.   The
+".NOT. green" is purely a comment  that  repeats  the  conditions
+that began the IF statement that should read:
+
+IF .NOT. green
+
+     Such comments make a program easier to read  but  will  slow
+down operation as  dBASE II  reads program lines from the disk as
+they are executed.   The latest versions of Ashton-Tate's  DBCODE
+and Gene Head's DB-SQZ5 that I have seen leave these comments in.
+
+     You can label a file by enclosing  a message   between  TEXT
+and ENDTEXT.  This leaves all lines between TEXT  and  ENDTEXT as
+in the source file.  ENDTEXT may be abbreviated to ENDT. Example:
+
+TEXT
+		(C) 1985 by Croggle Software, Inc.
+ENDTEXT
+
+     Caution should be taken that the  ENDTEXT  is included.   If
+omitted, all of the remaining file  will  not  be  encoded.   The
+command TEXT shuts off  encoding,  ENDTEXT  turns  it  on  again.
+Indentation within the TEXT area will be left as  in  the  source
+file.  Use this feature as little as you can.   The  extra  lines
+will slow down the program a little for each line added.   ENCODE
+requires that source files have initial  reserved  words  written
+out in full.  This insures a fully readable source  file.   dBASE
+looks for only  the  first  four  letters  of  a  reserved  word.
+Reserved words in any postion on a line but the first word may be
+abbreviated.  ENCODE does not check syntax on  anything  but  the
+first word in each line of dBASE command files.
+
+     ENCODE also requires that you name the source file  with the
+extension .SRC.  This keeps the  programmer  from  mistaking  the
+pseudo compiled (.CMD) file for the source  (.SRC)  file.   If  a
+file is requested and the .CMD file already exists, you  will  be
+warned:
+
+		    []=========[]
+		    [] WARNING []
+		    []=========[]
+
+
+SAMPLE.CMD already exists!  If you answer NO, the old SAMPLE.CMD
+will be renamed to SAMPLE.OLD
+
+
+Do you wish to overwrite SAMPLE.CMD (Yes/No/Quit)?
+
+     If you choose not to overwrite SAMPLE.CMD, the old file will
+be renamed SAMPLE.OLD.  The .OLD extension is used  to  keep  the
+encoded backup files distinct from the source backup which  would
+have a .BAK extension.  If you opt to quit, you will be taken  to
+the end of the program and see:
+
+Are you finished?
+
+     A <RETURN>, or any answer but yes, will return  you  to  the
+start screen for another file.
+
+
+			  Macro Support
+
+     Unlike Ashton-Tate's  DBCODE,  ENCODE  provides  full  macro
+support.   It is recommended that macros be used only when  other
+means are not available.  Macro operation is usually  slower.   A
+line starting with a macro will not be encoded.   This will  slow
+the program even more.  You must retain  the  "&"  as  the  macro
+symbol if you want to start a line with a macro.  ENCODE will not
+recognize a different symbol at the start  of  a  line,  even  if
+dBASE II can be configured to do so.   If  macros are confined to
+locations other than the start of a line, the "&" may be changed.
+If you do plan on using ENCODE to create a file for Ashton-Tate's
+RUNTIME, do not use an initial macro.   RUNTIME  will  not accept
+it.
+
+
+			    Sub Files
+
+     ENCODE requires separate encoding of any sub files you  wish
+to use in a dBASE II program package.   It is not  required  that
+all sub programs be encoded when operation is with dBASE II,  but
+it should be done for speed.   Only the command  files  with  the
+extension .CMD are encoded.
+
+
+		       Continuation Lines
+
+     Continuation lines will be work with  ENCODE,  but  are  not
+recommended.  They tend to add extra  bytes  to  the  file.   The
+usual reason for the broken line  is  to  handle  80  columns  of
+display.  A pair of lines like the following:
+
+@ 6,0 SAY '-----------------------------------------------------------------';
++'---------------'
+
+Could be written:
+
+@ 6,0 SAY '-------------------------------------------------------------------
+-------------'
+
+     The line is  allowed  to  wrap  (without a <RETURN>)  and be
+longer than 80 columns.  This is only possible if you use a  word
+processor to generate the CMD file.   dBASE II  will amputate the
+lines at 80 columns.   This method produces the shortest  output. 
+Another way to handle it is as follows:
+
+@ 6,0 SAY '----------------------------------------'
+@ 6,40 SAY '----------------------------------------'
+
+     This is 14 bytes longer than the previous  example  and  11
+bytes longer than the first, when encoded.
+
+
+		   Abbreviated Reserved Words
+
+     Reserved words may be abbreviated to four letters  in  your
+source file.  For example:
+
+DO WHIL	=	DO WHILE
+OTHE	=	OTHERWISE
+STOR	=	STORE
+ENDI	=	ENDIF
+
+     This produces a source file that is a little harder to read,
+but it allows faster code  writing.   You may also want to encode
+files already written in this style.  It is often used to produce
+a dBASE II command file that will run  slightly faster because of
+the shorter length of the file.   There  is  no gain in ENCODE to
+abbreviate the  initial  reserved  word  in  each  line.   ENCODE
+converts it to a single byte  token  anyway.   Please  note  that
+only the full reserved word and the four letter  abbreviation are
+supported  by  ENCODE  for  initial  reserved  words.   OTHE  for
+OTHERWISE is ok, but OTHER or OTHERW will not work. 
+
+
+			    Help File
+
+     The help file may be called from ENCODE by  entering a  "?"
+at the title screen.
+
+Filename.SRC or Drive:? ?
+
+
+			     Option
+
+N	No console display of  input  file.   This  is  the  only
+	option.  The N option must preceded by a space:
+
+Filename.SRC or Drive:? SAMPLE.SRC N
+
+
+			     History
+
+Rev. 1.05  3/20/85    Fixed bug that doubled  encoded  bytes  for
+reserved words with a length of  4.   WAIT was encoded to WAIT =.
+In hex:  C2 C2.  Bug present from version 1.02 thru 1.04.
+
+Rev. 1.04  2/28/85    Minor correction to  installation  routine.
+
+Rev. 1.03  2/27/85    Changed to remove  comments  starting  with
+NOTE and fixed bug in abbreviations of DO WHILE and DO CASE.
+
+Rev. 1.02  2/24/85    Added the ability to recognize  four letter
+abbreviations of  initial  reserved  words.   Clear  screen  self
+installation added.   ENCODE.COM distributed as a stand alone COM
+file, BRUN.COM no longer required.
+
+Rev. 1.01  2/17/85    Modified for compatibility with MBASIC 5.20
+under Apple CP/M.   This required changing TEXT$ to TXT$  as TEXT
+is a reserved word in the  Apple CP/M basic.   Added the  ability
+to accept initial reserved  words in lower case.   Also  modified
+to handle continuation lines and remove indentation at the  start
+of the continued line.  Blank lines  will  no  longer  abort  the
+encoding, provided they contain no spaces or tabs.
+
+ENCODE version 1.00 released 1/6/85
+
+
+			  LEGAL NOTICE
+
+     ENCODE  is NOT  "Public Domain."   Copyright  is held by the
+author:
+
+			Merlin R. Null
+			P. O. Box 9422
+			N. Hollywood, CA 91609
+			(818) 762-1429
+
+     Permission is given  only  for  private,  nonprofit  use  of
+ENCODE.  Feel free to make copies of the  program  for  your  own
+use or for your friends.   However, ENCODE may  NOT  be  sold  or
+included with any collection of programs for sale or used  as  an
+inducement to buy another product or program without the  written
+permission of the author.  Permission is also given for nonprofit
+computer clubs to include this  program  in  distribution  disks,
+provided total charges for the entire disk  of  programs, copying
+and shipping do not exceed $20.00.   My vote  of  thanks  goes to
+those clubs that have kept their charges under $10.00.
+
+
+			    Donation
+
+     If you like the program and use  it,  a  small  donation  of
+about $5.00 would be appreciated,  though it is  not required  to
+use ENCODE.  I will do my part to keep ENCODE maintained.
+
+     Please report any bugs to me at the above address  or  phone
+number.  I can also be  reached  by  leaving  a  message  on  the
+Glendale Literaria RCP/M (818) 956-6164.
+
+
+		      Other dBASE Utilities
+
+     I have two  other  programs  that  may  be  of  interest  to
+dBASE II users.   They are: DBSOURCE, a program to return encoded
+dBASE II command files to source code.   And  DBINDENT, to pretty
+print  dBASE II  source  code.    The  current  versions  are  in
+DBSRC102.LBR and DBINDENT.LBR.
+
+MBASIC and BRUN are Trademarks of Microsoft.
+dBASE II, DBCODE and RUNTIME are Trademarks of Ashton-Tate.
+

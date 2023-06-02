@@ -1,0 +1,13 @@
+
+MODULA-2 Compiler for Z-80 CP/M Version 2.01  4-Jun-85                 Page    1
+Compilation of HELLO.MOD   
+
+Line    Source
+
+   1  MODULE HELLO;
+   2  
+   3  BEGIN
+   4    WriteString('Hello World!');
+*****   ^73
+   5  END HELLO.
+

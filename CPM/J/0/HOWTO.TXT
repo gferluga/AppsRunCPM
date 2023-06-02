@@ -1,0 +1,23 @@
+**** =JANUS= Command Line
+: janus <package> [options]
+
+- The package file name can be given with or without .PKG extension.
+- /B -- Brief Error Messages
+- /C -- conditional compilation
+- /D -- Debugging Off
+- /Q -- no user prompting after errors
+- /L generate listing into =<pkgname>.PRN= file
+- /Rd -- Result File on Disk /d/
+- /S <d> -- Scratch Files on Disk /d/
+- /W -- Warnings Enabled
+- /Z -- Z80 code will be generated
+
+**** =JLINK= command line
+: jlink <package> [options]
+
+- /C -- No Hex Number given for option
+- /D -- No Hex Number given for option
+- /L -- Listing On
+- /Q -- No user prompt on errors
+- /Rd -- Output Disk
+- /Sd -- Swap Disk.

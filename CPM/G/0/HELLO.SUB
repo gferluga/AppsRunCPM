@@ -1,0 +1,6 @@
+COBOL =HELLO
+L80 HELLO/N,HELLO/E
+ERA HELLO.DBG
+ERA HELLO.REL
+HELLO
+

@@ -1,0 +1,337 @@
+SD History
+
+        This file contains the history of modifications originally
+        found within the SD1xx.LBR, but which has been separated
+        to keep the source file to a reasonable state.  Please
+        place future modification notes here.
+;----------------------------------------------------------------------
+; 02/03/89  Incorporations of changes from SD132 to SD133 to fix
+;  v137     file size bug into base of SDZD136, along with additions of TCAP
+;	    support for ZCPR3+ users and DRVVEC support for ZCPR34+ users.
+;						Gene Nolan
+;						Oreland Pa.
+;----------------------------------------------------------------------
+; 08/20/88  Should now REALLY assemble with LASM/ASM. Greatly expanded
+;  vZD136   date math capabilites when used with Z80DOS. 
+;						Gene Nolan
+;						Oreland Pa.
+;----------------------------------------------------------------------
+; 08/08/88  Interim private release
+;  vZD135
+;
+;----------------------------------------------------------------------
+; 07/15/88  Support for ZCPR33 wheel,Drive,User from ENV descriptor.
+;  vZD134   File specification may now be done by single or combination
+;	    of files attributes 1-4. Vertical sorting is now on a per
+;	    page basis (or partial page). Added '//' type help.
+;	    Added a summary display that shows total number of files
+;	    and the amount of storage they occupied if /A,/D,/H.
+;	    All 8080 code, no special assemblers required.
+;           New functions are all controlled by an equate.
+;           Set them all to NO and get SD132 back except for summary.
+;	    Attrbute specifiaction is wheel controlled(if WHEEL YES).
+;	    Complete re-write of Z80DOS time matching to fix a bug
+;	    and to account for Z80DOS's not stamping all extents in
+;	    certain instances.
+;						Gene Nolan
+;						Oreland, Pa
+;----------------------------------------------------------------------
+; 07/07/88  Intermin private release.
+;  vZD133 
+;						Gene Nolan
+;						Oreland, Pa
+;----------------------------------------------------------------------
+; 07/02/88  Support for Z80DOS type date stamping added. LBR's dated 
+;  vZD132   using SETD22 will also show dates of member files.
+;	    All 8080 code, no special assemblers required.
+;           New functions controlled by an equate. With equate NO then
+;	    will assemble to SD132 byte for byte except for some CR,LF
+;	    in the help messages if used with WHEEL.
+;						Gene Nolan
+;						Oreland, Pa
+;-----------------------------------------------------------------------
+; 05/13/88  Special version by Jay Sage for Z3PLUS and NZCOM supporting 
+;   v132A   Z34's drive vector and using Z3's TCAP for video support.  
+;           Source never generally released, but grateful acknowledgement 
+;           to Jay Sage for the ideas, which were implemented differently 
+;           in v137 by Gene Nolan .
+;                                               Note by Bob Dean         
+;                                               Drexel Hill, PA  2/5/88  
+;-----------------------------------------------------------------------
+; 04/17/88  Can again be assembled  with normal CP/M assemblers, such as
+;   v132    ASM.COM, LASM.COM, MAC.COM, RMAC.COM or M80/L80, etc.  A lot
+;           of people  do not have macro assemblers or Z80 assemblers as
+;           those were never distributed with the CP/M operating system.
+;           The Commodore C128 is one of the few new CP/M computers that
+;           is still being sold.  The only assemblers  the factory sells
+;           are MAC.COM and RMAC.COM.  Many other CP/M users do not have
+;           a Z80 assembler.  For the handful of people who may not have
+;           have one of the assemblers mentioned above, use XLATE5, XIZ,
+;           etc. to convert to Z80 source code in a few minutes.  Please
+;           do not foul up this program for those who do not have exotic
+;           assemblers, and have  8085 computers which do not accept Z80
+;           code.                       - Ed Minton
+;                                         Columbus, OH
+;
+;-----------------------------------------------------------------------
+; 03/22/88  This version implements the ability to have non-consecutive
+;   v131    drives in the drive map. If the user number is negative, it
+;           indicates the drive is NOT available, and it will NOT be
+;           accessed. The drive is effectively off-line. This eliminates
+;           the need to set HIDRV, since setting all the drives, either
+;           not present or off-line, to 0FFH, will prevent it's being
+;           selected. This version successfully assembles with M80, and
+;           should be linked with L80 to produce the COM file. It must
+;           be pointed out, that once the user value in the drive table
+;           has been set to 0FFH, not even the sysop can access the
+;           drive. The table, located in the front of the COM file, is
+;           easily patched using DDT, EDFILE, PATCH, SID or ZSID, to
+;           take a drive on or off-line.
+;
+;           To use M80 and L80, use the following two statements:
+;
+;                               M80 =SD131
+;                               L80 SD131,SD131/N/E
+;
+;           If you are using one of the SLR assemblers that requires
+;           the Zilog Mnemonics, ZXLATE14 can be used to convert the
+;           code for you. ZXLATE14 is available from most RCP/Ms in
+;           the United States, or specifically from:
+;                                       - Ben Grey
+;                                         Cedar Mill Z-Node 24
+;                                         [503] 644-4621 data
+;
+;-----------------------------------------------------------------------
+; 01/09/88  Starting with version 128 some (obviously) non-ZCPR type
+;   v130    person either added in, altered, or obfuscated the issue
+;           regarding ZCPR3 named directory support. The result with
+;           v128 and v129 was that after assembly the program would
+;           not run at all.  Look to v129 for the culprit on or about
+;           line 713.  Decrementing the register there does nothing
+;           but confuse the issue.  This version corrects that error
+;           by removing the three-line IF/ENDIF structure so that it
+;           will correctly operate on a ZCPR3 system.
+;                                       - Thomas L. Ensminger
+;                                         AB17 Remote Systems
+;                                         (513) 879-6263 data
+;
+;-----------------------------------------------------------------------
+; 01/06/88  When Mr. Reid (SD125ARC)  added routines  from SD118ARK, he
+;   v129    did  not incorporate all of the changes. Those were all re-
+;           replaced in version 128 with the exception of several 'ARK'
+;           characters in  the help guide, specifically the 'L' option.
+;           I also want to point out that Mr. Reid gives credit for the
+;           "ARC and ARK" changes in SD118ARK to a Mr. Shaffstall. This
+;           is incorrect.   Mr. Shaffstall  made the  ".ARC" changes in
+;           SD117ARC.  I modified SD117ARC to also display  the members
+;           of an ".ARK" file as used for CP/M files. This was released
+;           as version SD118ARK.
+;                                       - Neil E. Filby Chula Vista, CA
+;                                         (619) 422-6842
+;
+;-----------------------------------------------------------------------
+; 01/01/88  Modified the exit return to reset the original drive / user
+;   v128    area.  Suggested by Bill Duerr who confirmed that some com-
+;           puters were jumping to area 17 if the requested area wasn't
+;           available.  Checking previous versions indicates this prob-
+;           has been around since prior to SD95, at least.  Changed the
+;           location of the USELCW equate to follow the USELC equate as
+;           these are directly associated.  Added a WMBOOT equate which
+;           does a warm reboot upon exit if the above solution does not
+;           work properly on your system.  Try it first with WMBOOT set
+;           no, and then say something like: B0>DIR H14:*.*<ret> and if
+;           it returns to B0> after indicating H14: is not available to
+;           the user, just leave WMBOOT set NO.  If it says B17: change
+;           it to YES.  Added ZRDOS named directory routines which were
+;           in SD124 but not SD125 and later. Supplied by Jim Lindholm.
+;                                       - Irv Hoff PRACSA Sysop RCPM
+;
+;-----------------------------------------------------------------------
+; 12/11/87  Added SD123A corrections which were not included in v124 or
+;   v127    later versions.  Added needed blanks  after [more] to erase
+;           it properly when doing ASCII copy to disk with remote modem
+;           programs.  Segregated the ZCPR3 options to allow easier se-
+;           lection.                    - Irv Hoff PRACSA Sysop RCPM
+;
+;-----------------------------------------------------------------------
+; 12/08/87  Allows date to be displayed correctly if EDATE=YES.  Allows
+;   v126    search of files with a one character filename  (you have to
+;           specify "?." or "?.ext", "?" displays help screen.  Program
+;           now assembles  correctly with ASM.  Options  are set up for
+;           "normal" user  (no ZCPR, no RCP/M).  Updated  documentation
+;           and history files and put back in the distribution library.
+;                                       - Bill Duerr
+;
+;-----------------------------------------------------------------------
+; 12/02/87  Added routines from SD118ARK to list ARC/ARK files with the
+;  v125ARC  $L option - routines by G.B Shaffstall of Lakewood RCPM.
+;                                       - Ken Reid
+;
+;-----------------------------------------------------------------------
+; 08/23/87  o Added dynamic  identification of  Named Directories  for
+;   v124      ZCPR3/33 users. Controlled by the NDIRS equate, the pro-
+;             gram optionally becomes a Z-system utility of sorts. The
+;             environment descriptor address  is patched by  ZCPR33 on
+;             startup; ZCPR30 users should patch the address at Z3ENV;
+;             and the address of the  resident named  directory buffer
+;             located from this. The NDR is scanned for each user area
+;             and if a match is found,  the name is printed  after the
+;             DU form on the information line.
+;           o It has always been an  annoyance to me  that under ZRDOS
+;             in order to get a directory of any  area declared Public
+;             I had to first clear the Public flag, view the directory
+;             and then restore the flag.
+;             The equates  SHOPUB  and  WHLPUB  when enabled solve the
+;             problem by clearing the flag on startup of  SD  and res-
+;             toring them to their initial state on exit. SHOPUB wnab-
+;             les the function and WHLPUB restricts the function.
+;             The only drawback is  that in  order to make this work I
+;             had to "hardwire" the  "R" option (Reset drives)  making
+;             its use redundant with the SHOPUB equate enabled.
+;             Perhaps  someone can find a better method,  my resources
+;             are limited and my patience is thin.
+;             Without SHOPUB  the "R" option will function normally.
+;                                        - Greg C. Miner
+;                                          Port Williams, Nova Scotia
+;                                          (902) 542-5284 - RCPM
+;                                          (902) 542-7259 - voice
+;
+;-----------------------------------------------------------------------
+; 07/17/87  o After SD122 was released Paul Foote noticed the '[' used
+;   v123      by CP/M+ systems (rather than '$') did not work properly
+;             as it had in SD116 where it was introduced together with
+;             the '/' UNIX/ZCPR3  separator.  SD117, SD118B  and SD120
+;             had neither '/' nor '['.  SD121 had '/' but not '['. All
+;             fixed  now.  (I never did find SD119, don't  think there
+;             was one as Larry Clive had originally skipped from SD115
+;             directly to SD120 and SD117 and SD118 were  not based on
+;             the same SD116, sigh...  (Hopefully SD123 will bring the
+;             program back to some sense of normalcy once again.)
+;           o Hopefully fixed the bug  reported by Bill Wempren and by
+;             Dave Hardy where they were being sent to User 17 when an
+;             error on the command line was detected. The fix works ok
+;             for Dave Hardy now, leaving him on the same user area he
+;             was originally on.  This bug apparently  had existed for
+;             some time, preventing  them from  using recent versions.
+;           o Made a small change in the  header file that retains the
+;             same spacing for all user areas:
+;
+;                  Drive B0   Files: 78/3124k   Free: 2334k
+;                  Drive B15  Files: 16/1227k   Free: 2334k
+;
+;             Admittedly a trivial change  but had annoyed me for some
+;             time.  Only took a few extra bytes.
+;           o Removed the 'U' option.  It was made superfluous  by the
+;             'H' option and always was confusing  to use, needing the
+;             'A' option in addition  to a user number.  After talking
+;             with several Sysops I found none of them were  using the
+;             option and had not seen anybody else try to use it.  The
+;             'H' option does the  same thing and is very easy to use.
+;           o Rewrote the '?' help and .DOC file and RCPM-help guides.
+;                                       - Irv Hoff, PRACSA RCPM
+;
+;-----------------------------------------------------------------------
+; 07/11/87  o Rewrote the abort routine.  This program has long needed
+;   v122      two consecutive CTL-L to abort, normally never  stopping
+;             where you expect.  Now it stops properly with one in ad-
+;             diton to  showing a nice "++ ABORTED ++" message.  CTL-S
+;             now pauses at the end of a line instead of any old place
+;             on the line.  The abort likewise takes effect at the end
+;             of the line, speeding up the display in general since it
+;             now only checks  at the end of a line for an abort char.
+;             Can pause with 'S' or CTL-S, abort with C, K or X, CTL-C
+;             CTL-K, or CTL-X like many other  programs already offer.
+;           o Removed an initial line feed when using  vertical alpha-
+;             betization which was annoying particularly if using LUX.
+;           o Added a missing line feed when showing all user areas in
+;             horiztonal mode.  This lets you know which area the data
+;             for "files used and  space remaining" goes with.  It has
+;             been jamming the sections together in an awkward manner.
+;           o Added the 'H' (from here to highest) option. If using $H
+;             it displays all files from the current user area through
+;             the highest available.  Much  easier to  use than the $U
+;             command which  requires both the 'A' option and a number
+;             from which to start.  This  is a feature I've personally
+;             wanted for some time and  finally got  around to adding.
+;           o Renamed BDOS calls to conventional names, such as RDCON,
+;             WRCON, LIST rather than "FCIN, FOUT and FLOUT", gadzook.
+;           o Moved the disk/user table to the 'options area' where it
+;             is easily found.  It was previously buried in the actual
+;             program where many people missed it entirely.
+;           o Moved the BDOS equates to the end of the program as they
+;             are not altered  by the user and were  cluttering up the
+;             option area.  Also rearranged and segregated the options
+;             area for simple selection of those needed.
+;           o Eliminated  all superfluous and  unused labels (a number
+;             of them had accumulated through the years.)  This should
+;             help immensely in  setting up this program which was be-
+;             coming difficult even for experienced users.
+;           o Fixed bug present since prior to v100 that locks up some
+;             mainframes using interrupt-controlled systems, requiring
+;             use of older versions of the program.
+;           o In keeping with Ben Gray's actions  in version 117, also
+;             eliminated all  trailing, unattended ';' characters used
+;             on comment lines.
+;             Even with all the new features it is over 3 shorter than
+;             SD112.ASM.
+;           o My appreciation  to Frankie Hogan  for his C, R, T and X
+;             options of SD121.  These are some of the most useful new
+;             features added to this program since vertical alphabeti-
+;             zation.                   - Irv Hoff, PRACSA RCPM
+;
+;-----------------------------------------------------------------------
+; 03/19/87  *NOTE:  This version is a re-work of version 118.
+;   v121    Noted  (from  originator of  version 120)  that optional
+;           disk reset had been removed earlier, and  hack  solution
+;           was  to  use  a  conditional  to select an unconditional
+;           reset.  Version 118 always reset the disk system.   This
+;           prompted  modification to re-implement the optional (via
+;           option 'R') or unconditional reset (by  hard-wiring  the
+;           data  area  near the end of the code, which is described
+;           in the sour`).  Since  version 120 was basically version
+;           115, this version, modified  from 118, was numbered 121.
+;
+;           *Added several new options:
+;
+;               C - Give  record  sizes in terms of 128-byte records
+;                   used.  When this option is used, file sizes  are
+;                   followed  by  an  "r".   The summary lines still
+;                   report the totals in "k".
+;               R - Disk reset before processing begins.
+;                   (See above)
+;               T - Order  files  by  type  as the primary sort key.
+;                   This causes files of the same type to be grouped
+;                   together.
+;               X - Use  alternate  format  for  display  alphabeti-
+;                   zation.  The VCODE conditional  was  eliminated,
+;                   and  VLIST  was  added.  By setting this to YES,
+;                   the vertical  listing  is  the  normal  one,  as
+;                   before,  but  now  a  horizontal  listing may be
+;                   selected by using the $X option. Or, if VLIST is
+;                   NO,  the  normal  listing  is horizontal, and $X
+;                   selects a vertical one.
+;
+;           *Added new  fence  characters  for horizontal alphabeti-
+;           zation, and for library member listings.  These  may  be
+;           patched  into  the  .COM file for easy customization (as
+;           can VLIST, by the way).  The  library  fence  was  added
+;           because  library  members  are  never sorted, and it was
+;           felt that  some  way  of  indicating  the  ordering  was
+;           desirable.
+;
+;           *Found and  fixed  several  "minor" bugs which had to do
+;           with combinations of options selected  by  conditionals.
+;           ULINE  could  not  be  used without the REVID option on.
+;           If PGPAWS were off, option characters were skewed,  etc.
+;
+;           *Cleaned up  the  option character processing to make it
+;           more consistent and  easier  for  SYSOPs  to  customize.
+;           Added "USEx" conditionals so that any of the options may
+;           be wheel-locked.
+;
+;           *Performed general  cleanup  and  tightened  the code in
+;           several places.  Removed unnecessary POP's  and  PUSH's,
+;           etc.                        - Frankie Hogan, Los Angeles
+;
+;---------------------------------------------------------------------
+

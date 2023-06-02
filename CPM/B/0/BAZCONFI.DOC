@@ -1,0 +1,296 @@
+...document created with WordStar
+.op
+.hebaZic II                    baZic for CP/M Configuration Addendum
+.mb0
+
+         How to Configure baZic for CP/M for Your System
+
+
+Makå  á  copù oæ thå baZiã distributioî disë anä filå thå  masteò 
+disë iî á safå place®  Thå Creatå Workinç Disketteó optioî oî thå 
+Micrï  Decisioî shoulä bå useä tï dï this®   
+
+Turnkeying baZic
+
+Iî  thå followinç example¬  wå wilì turnkeù anä seô uppeò  memorù 
+limitó foò 10-digiô softwarå floatinç poinô baZic®   Wå wilì loaä 
+10-digiô softwarå floatinç poinô baZiã intï memory¬ togglå oî thå 
+turnkeù bytå (271)¬  enteò á one-linå turnkeù prograí tï bå saveä 
+aó  á  parô  oæ  baZic¬  exiô baZiã tï CP/Í  anä  savå  thå  filå 
+"BAZIC10.COM,¢  5´  blockó long¬  oî thå disë tï  preservå  theså 
+changes.
+
+Eitheò  Sysgeî thå copù oæ thå baZiã disë oò removå thå CP/Í booô 
+disë froí Drivå Á anä placå thå copù oæ thå baZiã disë iî Drivå Á 
+anä  theî dï á warí booô (presó CTRÌ anä Ã keyó  simultaneously)®  
+Thå  copù  oæ thå baZiã distributioî disë musô bå iî Drivå  Á  tï 
+continuå witè thå configuration.
+
+Followinç  ió  aî  examplå  configuratioî  oæ  10-digiô  softwarå 
+floatinç poinô baZic¬ 56Ë CP/Í (youò responseó arå underlined):
+
+A>^C
+A>BAZIC10 <CR>
+READY
+FILL 271,0 <CR>
+READY
+10 CHAIN "MENU" <CR>
+BYE <CR>
+A>SAVE 54 BAZIC10.COM <CR>
+A>
+
+baZiã   includeó  built-iî  cursor-addressinç  anä  cleaò  screeî 
+commands/statements®  Iæ yoõ wanô tï ruî onlù existinç  NorthStaò 
+BASIÃ programó undeò baZiã yoõ dï noô neeä tï uså theså features®  
+Sï  thaô baZiã useró witè á varietù oæ CRTó caî uså theså  cursoò 
+addressinç anä cleaò screeî features¬ thå baZiã distributioî disë 
+includeó   á  CRÔ  configuratioî  program¬   "CRT.002.¢   Iî  thå 
+followinç  examplå wå wilì configurå 10-digiô  softwarå  floatinç 
+poinô  baZiã  foò  á SOROÃ IÑ 12° terminaì  (youò  responseó  arå 
+underlined):
+
+
+
+
+
+
+COPYRIGHT 1981                - i -            MICRÏ MIKE'S¬ INC.
+
+A>BAZIC10 <CR>
+READY
+LOAD CRT <CR>
+READY
+RUN <CR>
+
+Thå  prograí  "CRT.002¢ wilì bå executed®   Yoõ wilì no÷ seå  thå 
+followinç oî thå screen:
+ŠTHIÓ PROGRAÍ IÓ DESIGNEÄ TÏ CONFIGURÅ BAZIÃ FOÒ Á PARTICULAÒ CRT®  
+FOÒ  THÅ  PRINTÀ ANÄ THÅ CLÓ STATEMENTÓ TÏ WORË  PROPERLY¬  BAZIÃ 
+MUSÔ KNO× THÅ CURSOR-ADDRESSINÇ PREFIØ ANÄ OFFSEÔ FOÒ YOUÒ CRÔ AÓ 
+WELÌ AÓ THÅ CODEÓ TÏ CLEAÒ THÅ SCREEN®   THIÓ PROGRAÍ IÓ DESIGNEÄ 
+TÏ  CHANGÅ  BAZIÃ FOÒ THÅ TERMINALÓ LISTEÄ ANÄ  TÏ  ALLO×  CUSTOÍ 
+CHANGEÓ IÆ YOÕ KNO× THÅ CODEÓ FOÒ Á CRÔ THAÔ IÓ NOÔ LISTEÄ  HERE®  
+SOMÅ  CRTÓ MAÙ REQUIRÅ REWRITINÇ THÅ CURSOÒ ADDRESSINÇ ANÄ  CLEAÒ 
+SCREEÎ ROUTINES®  THIÓ PROGRAÍ CAÎ BÅ CHANGEÄ SÏ THAÔ IÔ 'WRITES§ 
+THÅ  PROPEÒ  ROUTINÅ  BÙ  ADDINÇ AÎ ENTRÙ TÏ THÅ  TABLÅ  OÆ  DATÁ 
+STATEMENTÓ  AÔ THÅ ENÄ OÆ THIÓ PROGRAM®   THÅ FIRSÔ FIELÄ IÓ  THÅ 
+NUMBEÒ  OÆ PAIRÓ THAÔ HAVÅ TÏ BÅ WRITTEN®   EACÈ PAIÒ CONSISTÓ OÆ 
+THÅ  VALUÅ  TÏ  BÅ  WRITTEÎ ANÄ THÅ  NUMBEÒ  OÆ  BYTEÓ  FROÍ  THÅ 
+BEGINNINÇ OÆ BAZIÃ OÆ WHERÅ THÅ BYTÅ IÓ TÏ BÅ WRITTEN.
+
+THE BAZIC DISK MUST BE IN DRIVE ONE FOR THIS PROGRAM TO OPERATE.
+
+PRESS RETURN TO CONTINUE
+
+Presó Returî anä thå prograí wilì displaù á menõ oæ ¶ CRÔ optionó 
+anä aî "other¢ option.
+
+1=ZENITH Z-19 OR HEATH WH-19
+2=ADM-3A
+3=INTERTEC INTERTUBE
+4=HAZELTINE
+5=SOROC
+6=NORTHSTAR ADVANTAGE
+7=DIGITAL VT-100
+8=OTHER
+
+Iæ  youò CRÔ ió noô onå oæ thoså listeä consulô youò  CRÔ  manuaì 
+foò thå valueó oæ youò CRÔ and/oò youò programmer®   Wå will¬ foò 
+thå purposeó oæ thió example¬ selecô 2 foò ADM-3A.
+
+Next you will see:
+
+1=  8 DIGIT SOFTWARE FLOATING POINT BAZIC
+2= 10 DIGIT SOFTWARE FLOATING POINT BAZIC
+3= 12 DIGIT SOFTWARE FLOATING POINT BAZIC
+4= 14 DIGIT SOFTWARE FLOATING POINT BAZIC
+5=  8 DIGIT HARDWARE FLOATING POINT BAZIC
+6= 10 DIGIT HARDWARE FLOATING POINT BAZIC
+7= 12 DIGIT HARDWARE FLOATING POINT BAZIC
+8= 14 DIGIT HARDWARE FLOATING POINT BAZIC
+
+ENTER NUMBER OF BAZIC TO BE CHANGED (0 TO END) 2
+
+Wå  wilì  selecô  ² foò 10-digiô softwarå floatinç  poinô  baZic®  
+(Hardwarå  floatinç  poinô baZiã ió foò uså  witè  thå  NorthStaò 
+Floatinç Poinô Board.)
+
+
+COPYRIGHT 1981                - ii -           MICRÏ MIKE'S¬ INC.
+
+Now you will see:
+
+THIÓ LINÅ SHOULÄ BÅ AÔ THÅ TOĞ OÆ THÅ CRÔ ANÄ THÅ RESÔ OÆ THÅ 
+SCREEÎ SHOULÄ BÅ CLEAR®  1=YES¬ 0=NÏ  1
+
+Enteò ± iæ thå abovå sentencå ió aô thå toğ oæ thå screeî anä thå 
+resô oæ thå screeî ió clear® 
+
+Aô  thió  poinô  á  serieó oæ loop-de-loopó wilì  appeaò  oî  thå Šscreen®   Belo÷ thå loop-de-loopó thå followinç wilì bå displayeä 
+oî thå screen:
+
+THIS COMPLETES THE TEST.  IF EVERYTHING IS OK THERE SHOULD
+BE A DISTINCT PATTERN FROM THE PREVIOUS !@ STATEMENTS
+ENTER 1= EVERYTHING IS OK, 0= NOT OK
+
+Iæ everythinç ió okaù enteò ± anä thå nexô prompô wilì be:
+
+READY
+
+Configuratioî ió no÷ complete®  Tï tesô thå cleaò screeî functioî 
+typå (youò responså ió underlined):
+
+READY
+CLS <CR>
+
+The screen should clear and 
+
+READY 
+
+should appear at the top, left-hand corner of the screen.
+
+Adapting baZiã for operation undeò thå MP/Í É operatinç system:
+
+The configuration process is the same as for CP/M.
+
+Foò baZiã tï functioî undeò thå MP/Í É operatinç system¬ yoõ musô 
+disablå Controì C®  Yoõ caî disablå Controì Ã bù addinç thió linå 
+oæ codå aó thå firsô linå numbeò iî thå firsô prograí tï bå run:
+
+1 FILL 280,1
+
+Yoõ musô eitheò adä thió linå oæ codå tï thå prograí oò FILÌ thió 
+locatioî manuallù foò baZiã tï operatå undeò thå MP/Í É operatinç 
+system®    Tï  disablå  Controì  Ã  manuallù  (youò  responså  ió 
+underlined):
+
+READY
+FILL 280,1 <CR>
+READY
+
+
+
+
+
+
+
+
+
+
+
+COPYRIGHT 1981                - iii -          MICRÏ MIKE'S¬ INC.
+
+baZic File Name Extensions
+
+Undeò  CP/Í baZiã programó wilì havå á  ".002¢  extension¬  e.g.¬ 
+"PROGRAM.002.¢   baZiã  datá fileó generallù wilì havå  á  ".003¢ 
+extension¬  unlesó specifieä otherwise®   Typå ± machinå languagå 
+programó wilì havå á ".001¢ extension.
+
+
+Movinç NorthStaò BASIÃ Programó anä Datá Fileó froí á NorthStaò ŠDOÓ Disë Formaô tï á CP/Í Disë Format
+
+Á  utilitù foò movinç NorthStaò BASIÃ programó anä datá filå froí 
+á  NorthStaò DOÓ disë formaô tï á NorthStaò CP/Í disë  formaô  ió 
+availablå  froí Micrï Mike's¬  Inc®    COPYALÌ allowó yoõ tï copù 
+froí  á  NorthStaò  DOÓ  disë formaô tï  onå  oæ  fouò  differenô 
+NorthStaò  CP/Í floppù disë formats®  COPYALÌ operateó  witè  thå 
+NorthStaò Horizoî only; the Advantagå is noô supporteä currently.
+
+Machine Language Sort Subroutine and Powerful Editor for baZic
+
+SÚ  Softwarå  Systemó haó developeä á fast“ machinå languagå  sorô 
+subroutinå  which¬  oncå  installed¬  becomeó á  parô  oæ  baZic®  
+N*SORÔ  ió manù timeó fasteò thaî thå fastesô Shell-Metzneò  sorô 
+writteî iî BASIC®   N*SORÔ ió availablå froí Micrï Mike's¬ Inc.
+
+N*BUÓ  ió á powerfuì globaì editoò foò baZic®    Iô ió  availablå 
+froí Micrï Mike's¬ Inc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COPYRIGHT 1981                - iv -           MICRÏ MIKE'S¬ INC.
+Application Software for Use with baZic
+
+Virtuallù anù prograí writteî iî NorthStaò BASIÃ wilì  run¬  witè 
+few or no modifications, under baZic.
+
+Micrï  Mike's¬  Inc®  offeró á varietù oæ applicatioî softwarå tï 
+operatå undeò baZiã anä CP/M®   Amonç manù programó available:
+
+.uj0
+Most MMI application program manuals                     25.00  
+
+MM-SO-CSUB      CSUB (Common SUBroutines for baZic)    
+MM-SO-T&C       Timå ¦ Chargeó Prograí                 
+MM-SO-GPT       Graphploô                             
+MM-SO-OIL       Oil/Gaó Producer'ó Accounting Prograí             
+MM-SO-TRUCKLINE Trucklinå Managemenô Prograí           
+MM-SO-FEEDLOT   Feedloô Managemenô Prograí             
+
+MM-SO-G/L       Generaì Ledgeò Prograí                 
+MM-SO-A/R       Accountó Receivablå Prograí            
+MM-SO-PAYROLL   Payrolì Prograí                        
+MM-SO-A/P       Accountó Payablå Prograí               
+MM-SO-INV3      Inventory Control III                  Š
+MM-SO-EX-PAY    Expanded Payroll (30+ employee cat.)  
+MM-SO-JC-PAY    Job Costing Payroll                   
+MM-SO-BRINV     Branchinç Inventorù Prograí           
+MM-SO-MAIL      MailMasteò Mail Lisô Prograí          
+MM-SO-ACRS      ACRS Depreciation Schedule            
+MM-SO-AMORT     Amortizatioî Schedulå                 
+MM-SO-CJC       Contractor Job Cost                   
+.uj1
+
+Prices and specifications are subject to change without notice.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COPYRIGHT 1981                - v -            MICRÏ MIKE'S¬ INC.
+

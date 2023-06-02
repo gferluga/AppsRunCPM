@@ -1,0 +1,24 @@
+                         CONTROL CHARACTER COMMANDS 
+^A  align memory display             ^M  carriage return
+^B  bypass current instruction       ^P  print permanent breakpoint display
+^C  cancel trace                     ^R  redraw screen
+^D  down (page down) memory display  ^S  show free memory
+^G  go to next instruction           ^T  trace single instruction
+^F  home instruction display         ^U  up (page up) memory display
+^H  back up/ back space              ^X  erase command line
+^J  trace single instruction         ^Z  Z80 alternate register display
+^L  loop on current instruction    
+                         STANDARD LINE COMMANDS *indicates more than one form
+A add symbol: A symbol value,symbol name      N new disk: N
+B set perm bp: B addr,expression,count        O offset symbols: O value*
+C calculate expression: C expression          P port I/O: PI number*
+D disassemble memory: D address*              Q quit: Q
+E enable stack: E address                     R read file: R*
+F find string: F strt,stop,constant,'string'  S set memory: S start
+G go to program: G strt addr, bp addr1,...3   T trace: T count*
+H help: H                                     U untrace: U count
+I input command line: I command line          V verify memory: V st1,end,st2
+Ê justifù memoryº  Ê start,enä                × windo÷ memoryº × addr1,addr2*
+K kill breakpoint: K number*                  X set register: X item,value
+L loop on instruction: L count                Y browse memory: Y address
+M move memory: M start,end,dest.              Z zap memory: Z strt,end,value

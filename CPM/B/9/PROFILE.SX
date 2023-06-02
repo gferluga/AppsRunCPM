@@ -1,0 +1,34 @@
+# ------------------------ #
+# SAMARUX START-UP PROFILE #
+# ------------------------ #
+#
+if banner.txt exist cat banner.txt
+#
+echo ; echo 'Enter whatever username you want!' ; echo
+#
+# Login:
+#
+echo -n 'login: '
+read USER
+if $USER eq '' goto Login
+#
+env TERM vt52
+env PROMPT [%u@%w] %$
+#
+alias h history 0
+alias nl cat -n
+alias logout exit
+alias free mem
+#
+diralias sys a0:
+#
+echo
+echo Hi $USER welcome to SamaruX!
+echo
+echo Current command aliases:
+alias
+echo
+echo Current directory aliases:
+diralias
+echo
+

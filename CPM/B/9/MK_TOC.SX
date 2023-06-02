@@ -1,0 +1,9 @@
+# mk_toc.sx - Make the table of contents for the SamaruX printed manual
+#
+# Last edited: 19 Sep 2021
+#
+# Use: batch mk_toc.sx
+#
+echo Making TABLE OF CONTENTS
+#
+cat chapsep.tmp > toc.tmp

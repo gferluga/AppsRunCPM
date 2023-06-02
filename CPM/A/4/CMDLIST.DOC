@@ -1,0 +1,801 @@
+// : allows comments in a program 
+  // [<anything>] 
+  // next line scans name field 
+ 
+! : non-executable marker used for invalid lines during ENTER 
+  ! [<anything>] 
+  ! open file 2,"comal0.14'file",unit 8,15 
+ 
+ABS : gives the absolute value 
+  ABS(<numeric expression>) 
+  PRINT ABS(standard'number) 
+ 
+ACS : gives the arc cosine 
+  ACS(<numeric expression>) 
+  PRINT ACS(SQR(3)/2) 
+ 
+AF : set or fetch z80 register 
+  AF [<numeric expression>] 
+  AF 0 
+  PRINT AF 
+ 
+AND : logical AND 
+  <expression> AND <expression> 
+  IF number>0 AND number<100 THEN 
+ 
+APPEND : start at end of file for writing 
+  OPEN [FILE] <file#>,<filename>,APPEND
+  OPEN FILE 2,"test",APPEND 
+ 
+ASN : gives the arc sine 
+  ASN(<numeric expression>) 
+  PRINT ASN(0.5) 
+ 
+AT : begin at specified location 
+  PRINT AT <row>,<col>: [<print list>[<mark>]] 
+  PRINT AT 1,1: "Section number:": num; 
+ 
+ATN : arc tangent 
+  ATN(<numeric expression>) 
+  PRINT ATN(num1+num2) 
+ 
+AUTO : automatic line numbering 
+  AUTO [<start line>][,<increment>] 
+  AUTO 9000 
+  AUTO ,2 
+ 
+BC : set or fetch z80 register 
+  BC [<numeric expression>] 
+  BC 5 
+  PRINT BC 
+ 
+BIN$ : returns a number in binary form 
+  BIN$(<numeric expression>
+  PRINT BIN$(128) 
+
+BITAND : bitwise AND 
+  <argument> BITAND <argument> 
+  show(bnum BITAND %00001000) 
+ 
+BITOR : bitwise OR 
+  <argument> BITOR <argument> 
+  PRINT (bnum BITOR flag) 
+ 
+BITXOR : bitwise XOR 
+  <argument> BITXOR <argument> 
+  bnum=(num1+num2) BITXOR %10000000 
+ 
+BYE : exit COMAL and return to CP/M 
+  BYE 
+  BYE 
+ 
+CALL : call a machine language routine 
+  CALL <numeric expression> 
+  CALL print'char 
+ 
+CASE : multiple choice decisions 
+  CASE <control expression> [OF] 
+  CASE reply$ OF 
+ 
+CAT : gives disk directory 
+  CAT [<filename>] 
+  CAT "prog*.*" 
+ 
+CHAIN : load & run program on disk 
+  CHAIN <filename> 
+  CHAIN "menu" 
+ 
+CHANGE : change text - space bar means no, RETURN means yes 
+  CHANGE "<old text>","<new text>" 
+  CHANGE "zz","print'report" 
+ 
+CHR$ : gives the character specified 
+  CHR$(<numeric expression>) 
+  PRINT CHR$(num) 
+ 
+CLOSE : closes files 
+  CLOSE [[FILE] <filenum>] 
+  CLOSE FILE 2 
+ 
+CLOSED : all proc/func variables local 
+  PROC <procname>[(params)] [CLOSED] 
+  FUNC <funcname>[(params)] [CLOSED] 
+  PROC newpage(header$) CLOSED 
+  FUNC odd(number) CLOSED 
+ 
+CODE : execute sequence of instructions
+  CODE <value>[,<value>[,...] 
+  CODE $11,x MOD 256,x DIV 256 
+
+CON : continue program execution after STOP 
+  CON 
+  CON 
+ 
+COS : cosine 
+  COS(<numeric expression>) 
+  PRINT COS(number) 
+ 
+CREATE : create RANDOM file on disk 
+  CREATE <filename>,<number of records>,<record size> 
+  CREATE "names",128,300 
+ 
+CURCOL : returns the cursor column position 
+  CURCOL 
+  column:=CURCOL 
+ 
+CURROW : returns the cursor row position 
+  CURROW 
+  row:=CURROW 
+ 
+CURSOR : positions the cursor 
+  CURSOR <line>,<position> 
+  CURSOR 1,1 
+ 
+DATA : provides data for a READ 
+  DATA <value>[,<value>][,...][,END] 
+  DATA "Sam",3.134,"Fred",22,"Gloria",END 
+ 
+DE : set or fetch z80 register 
+  DE [<numeric expression>] 
+  DE 32768 
+  PRINT DE 
+ 
+DEL : deletes lines 
+  DEL <line#> 
+  DEL <range> 
+  DEL <procname> 
+  DEL <funcname> 
+  DEL <trace> 
+  DEL 460 
+  DEL 500-600 
+  DEL pause 
+  DEL odd 
+  DEL TRACE 
+ 
+DELETE : deletes a file from disk 
+  DELETE <filename> 
+  DELETE "test5.sav" 
+ 
+DIM : reserve string/numeric array space 
+  DIM <string var> OF <max char>
+  DIM <str array>(<index>) OF <max char> 
+  DIM <array name>(<index>)
+  DIM name$ of 30 
+  DIM player$(1:4) of 10 
+  DIM scores(min:max) 
+ 
+DIR : display directory of disk 
+  DIR [<filename>] 
+  DIR "prog*.*" 
+ 
+DISCARD : discards one or all packages 
+  DISCARD [<packagename>] 
+  DISCARD 
+  DISCARD "mouse" 
+ 
+DISPLAY : display program lines without line numbers 
+  DISPLAY [<filename>] [<range>] 
+  DISPLAY [<filename>] <proc/func name>
+  DISPLAY 
+  DISPLAY 10-100 
+  DISPLAY "readrec" readrec 
+ 
+DIV : division with integer answer 
+  <dividend> DIV <divisor> 
+  result=guess DIV count 
+ 
+DO : used with FOR and WHILE 
+  DO <statements> 
+  WHILE ok DO 
+  WHILE NOT error DO ask'question 
+  FOR x:=1 TO max DO show'item(x) 
+ 
+DOWNTO : used in FOR loop for -1 STEP 
+  <start num> DOWNTO <end num> 
+  FOR x:=10 DOWNTO 1 DO PRINT x 
+ 
+DPEEK : returns double byte from memory
+  DPEEK(<numeric expression>) 
+  PRINT DPEEK(memory'address) 
+ 
+DPOKE : sets double byte in memory 
+  DPOKE <numeric expression>,<value> 
+  DPOKE memory'address,value+2 
+ 
+DS : set/reset screen output 
+  DS<type> 
+  DS+ 
+ 
+EDIT : list and edit lines without indentations 
+  EDIT [<line#>] 
+  EDIT <range> 
+  EDIT <proc/func name> 
+  EDIT 20
+  EDIT 500-
+  EDIT pause 
+
+ELIF : short for ELSE IF condition 
+  ELIF <expression> [THEN] 
+  ELIF reply$ IN "AEIOU" THEN 
+ 
+ELSE : alternative IF struc statements 
+  ELSE 
+  ELSE 
+ 
+END : halt program & show message 
+  END [<display message>] 
+  END "All Done." 
+ 
+ENDCASE : end of CASE structure 
+  ENDCASE 
+  ENDCASE 
+ 
+ENDFOR : end of FOR structure 
+  ENDFOR [<control variable>] 
+  ENDFOR sides 
+ 
+ENDFUNC : end of function 
+  ENDFUNC [<function name>] 
+  ENDFUNC pause 
+ 
+ENDIF : end of IF structure 
+  ENDIF 
+  ENDIF 
+ 
+ENDLOOP : end of LOOP structure 
+  ENDLOOP 
+  ENDLOOP 
+ 
+ENDPROC : end of procedure 
+  ENDPROC [<procedure name>] 
+  ENDPROC show'item 
+ 
+ENDTRAP : end of TRAP structure 
+  ENDTRAP 
+  ENDTRAP 
+ 
+ENDWHILE : end of WHILE structure 
+  ENDWHILE 
+  ENDWHILE 
+ 
+ENTER : retrieve ASCII program lines 
+  ENTER <filename> 
+  ENTER "testing" 
+ 
+EOD : End Of Data flag 
+  EOD 
+  WHILE NOT EOD DO  
+
+EOF : End Of File flag 
+  EOF(<filenum>)
+  WHILE NOT EOF(infile) DO 
+ 
+ERR : returns current error number 
+  ERR 
+  CASE err OF 
+ 
+ERRTEXT$ : returns error message 
+  ERRTEXT$ 
+  PRINT ERRTEXT$ 
+ 
+ESC : escape key pressed flag 
+  ESC 
+  TRAP ESC<type> 
+  UNTIL ESC 
+  TRAP ESC+ 
+ 
+EXEC : execute a procedure 
+  [EXEC] <procname>[(<parameter list>)]
+  EXEC show'item(number) 
+ 
+EXIT : use to leave any looping structure 
+  EXIT 
+  EXIT 
+ 
+EXIT WHEN : conditional exit to looping structures 
+  EXIT WHEN <condition> 
+  EXIT WHEN errors>3 
+ 
+EXP : natural log e to n 
+  EXP(<numeric expression>) 
+  PRINT EXP(number) 
+ 
+EXTEND : increase number of records in a RANDOM file 
+  EXTEND <filename>,<number of records>,<record size> 
+  EXTEND "startrek",192,150 
+ 
+EXTERNAL : external proc/funcs or program section 
+  PROC <name>[<parameter list>] [EXTERNAL <filename>] 
+  FUNC <name>[<parameter list>] [EXTERNAL <filename>] 
+  EXTERNAL 
+  PROC sum(section) EXTERNAL "sum" 
+  FUNC rec'size(name$) EXTERNAL "rec" 
+  EXTERNAL 
+ 
+FALSE : predefined value equal to 0 
+  FALSE
+  ok:=FALSE 
+ 
+FILE : specifies a file is to be used 
+  INPUT FILE <file#>[,<rec#>]: <var list>[<mark>] 
+  PRINT FILE <file#>[,<rec#>]: <val list>[<mark>] 
+  READ FILE <file#>[,<rec#>]: <var list>[<mark>] 
+  WRITE FILE <file#>[,<rec#>]: <var list>[<mark>] 
+  OPEN [FILE] <file#>,<filename>[,<type>]
+  CLOSE [[FILE] <file#>] 
+  INPUT FILE 2: text$ 
+  PRINT FILE outfile,count:name$ 
+  READ FILE infile,sub:name$,phone$ 
+  WRITE FILE 3,1:total'records 
+  OPEN FILE 2,"scores",READ 
+  CLOSE FILE infile 
+ 
+FILESIZE : returns size of file in bytes 
+  FILESIZE(<filename>) 
+  PRINT FILESIZE("test.txt") 
+ 
+FIND : finds text in a program 
+  FIND "<text string>" 
+  FIND " PROC " 
+ 
+FLOAT : returns a number (integer or real) as a real. 
+  FLOAT(<num>) 
+  WRITE FILE 2: FLOAT(count) 
+ 
+FOR : start of FOR loop structure 
+  FOR <var>:=<start> TO | DOWNTO <end> [STEP <increment>] DO 
+  FOR <var>:=<start> TO | DOWNTO <end> [STEP <increment>] DO <statement> 
+  FOR sides:=1 TO 4 DO 
+  FOR x:=1 TO 10 STEP 2 DO 
+  FOR countdown:=10 DOWNTO 1 do print countdown 
+ 
+FRAC : returns fractional part of number 
+  FRAC(<numeric expression>) 
+  PRINT FRAC(3.14) 
+ 
+FREE : returns amount of free program memory 
+  FREE 
+  PRINT FREE 
+ 
+FUNC : start of a multiline function 
+  FUNC <name>[(<params>)] [CLOSED]
+  FUNC <name>[(<parm>)] EXTERNAL <filename> 
+  FUNC odd(number) CLOSED 
+  FUNC call'answered EXTERNAL "call" 
+ 
+GET$ : returns # of characters from open file 
+  GET$(<filenum>,<# of characters>) 
+  text$=GET$(2,16) 
+ 
+GOTO : go to line after label named 
+  GOTO <label name> 
+  GOTO jail 
+ 
+HANDLER : lines executed if error 
+  HANDLER 
+  HANDLER 
+ 
+HEX$ : returns hexidecimal value
+  HEX$(<numeric expression>) 
+  PRINT HEX$(45) 
+ 
+HL : set or fetch z80 register 
+  HL [<numeric expression>] 
+  HL 245 
+  PRINT HL 
+ 
+IF : start of conditional IF structure 
+  IF <condition> [THEN] 
+  IF <condition> THEN <statement> 
+  IF errors>3 THEN halt 
+  IF reply$ IN "yYnN" THEN 
+ 
+IMPORT : import into CLOSED proc/func 
+  IMPORT <identifier> [[,<identifier>]]
+  IMPORT bold'char 
+ 
+IN : locate string1 within string2 
+  <string1> IN <string2> 
+  IF win$ IN guess$ THEN winner 
+ 
+INP : return number from z80 port 
+  INP(<numeric expression>) 
+  PRINT INP(&d04c) 
+ 
+INPUT : input from keyboard or file 
+  INPUT [<prompt>:] <var list>[<mark>] 
+  INPUT FILE <file#>[,<rec#>]: <var list> 
+  INPUT AT <row>,<col>[,<field>][:<prompt>]: <var list>[<mark>] 
+  INPUT prompt$: reply$; 
+  INPUT FILE 2: text$ 
+  INPUT AT 5,2,15:"ZIP CODE: ": zip'code, 
+ 
+INT : nearest integer (less than or equal)
+  INT(<numeric expression>) 
+  tally:+INT(number) 
+ 
+KEY$ : scans keyboard & returns key typed 
+  KEY$ 
+  WHILE KEY$="" DO NULL 
+ 
+LABEL : assign label name to the line 
+  [LABEL] <label name>: 
+  quick'quit: 
+ 
+LEN : gives the length of string 
+  LEN(<string expression>) 
+  length=LEN(text$) 
+ 
+LET : assign value to variable 
+  [LET] <variable>:=<expression> 
+  [LET] <variable>:+<expression> 
+  [LET] <variable>:-<expression>
+  total:-loses 
+ 
+LINK : loads a package from disk 
+  LINK <filename> 
+  LINK "mouse" 
+ 
+LIST : list program 
+  LIST [<filename>] [<range>] 
+  LIST [<filename>] <proc/func name> 
+  LIST 10 
+  LIST -30 
+  LIST "header" header 
+ 
+LOAD : load a program from disk 
+  LOAD <filename> 
+  LOAD "menu" 
+ 
+LOG : natural logarithm of n 
+  LOG(<numeric expression>) 
+  PRINT LOG(number); 
+ 
+LOOP : start of LOOP structure 
+  LOOP [<statement>] 
+  LOOP 
+  LOOP flash 
+ 
+LOWER$ : returns characters in lower case 
+  LOWER$(<string expression>) 
+  PRINT LOWER$("COMAL is Great!") 
+ 
+MAIN : leave external to main program 
+  MAIN 
+  MAIN 
+ 
+MAXMEM : returns the top of the TPA 
+  MAXMEM
+  PRINT MAXMEM 
+ 
+MERGE : merge files from disk 
+  MERGE [<starting line#>][,<increment>] <filename> 
+  MERGE "readrec" 
+ 
+MOD : remainder of division (modula) 
+  <dividend> MOD <divisor> 
+  color=number mod 16 
+ 
+MOUNT : initialize disk drive and set UNIT$ 
+  MOUNT ["<drive>:"] 
+  MOUNT "b:" 
+ 
+NEW : clears program from memory 
+  NEW [<numeric expression>] 
+  NEW 
+  NEW 500 // reserve 500 bytes for USER 
+ 
+NEXT : converted to ENDFOR 
+  NEXT 
+  NEXT
+
+NOT : logical NOT 
+  NOT <condition> 
+  IF NOT ok THEN 
+ 
+NULL : does nothing 
+  NULL 
+  WHILE KEY$="" DO NULL 
+ 
+OF : part of DIM or CASE structure 
+  CASE <expression> [OF] 
+  DIM <stringvar> OF <max char> 
+  DIM <stringarray>(index) OF <max char> 
+  CASE month$ OF 
+  DIM name$ OF 30 
+  DIM player$(1:max) OF max'char 
+ 
+OFF : turn TRACE mode off 
+  TRACE OFF 
+  TRACE OFF 
+ 
+OPEN : open a file 
+  OPEN [FILE] <file#>,<filename>[,<type>] 
+  OPEN FILE 2,"scores",READ 
+ 
+OR : logical OR 
+  <condition> OR <condition> 
+  IF reply$<"a" OR reply$>"z" THEN 
+ 
+ORD : ASCII (ordinal) value of char 
+  ORD(<string expression>) 
+  a=ORD("a") 
+
+OTHERWISE : default for CASE 
+  OTHERWISE 
+  OTHERWISE 
+ 
+OUT : output value to port 
+  OUT <address>,<value> 
+  OUT (C),A 
+ 
+OUTPUT : select output location 
+  SELECT [OUTPUT] <type> 
+  SELECT "lp:" 
+ 
+PACK : remove comments and TRACE commands 
+  PACK 
+  PACK 
+ 
+PACKAGES : list current packages 
+  PACKAGES
+  PACKAGES 
+ 
+PAGE : clearscreen / formfeed 
+  PAGE 
+  PAGE 
+ 
+PEEK : look at memory 
+  PEEK(<memory address>) 
+  device=PEEK(4839) 
+ 
+PI : value of pi 
+  PI 
+  PRINT "Value of PI is";PI 
+ 
+POKE : change contents of memory location 
+  POKE <memory address>,<contents> 
+  POKE 4839,13 
+ 
+PRINT : print items to screen/printer/file 
+  PRINT [AT <row>,<column>:] [USING <form>:] <numeric var list> 
+  PRINT [FILE <file#>[,<record#>]:] [USING<frm>:] <numeric var list> 
+  PRINT FILE 2: text$ 
+  PRINT USING "Total is $####.##": total 
+  PRINT AT 5,15: "Menu choice:"; 
+  PRINT USING "Items:### Value:###.## Total:####.##": num,1.4,num*1.4 
+  PRINT FILE 8,1: number'of'records 
+ 
+PROC : start of multiline procedure 
+  PROC <name>[(<params>)] [CLOSED] 
+  PROC <name>[(<parm>)] [EXTERNAL <filename>] 
+  PROC readrec(number) 
+  PROC sort(name$()) EXTERNAL "sorting"
+
+PROTECT : set program to LOAD/SAVE/RUN only 
+  PROTECT 
+  PROTECT 
+ 
+PUT : sends string to file without delimiter 
+  PUT <filenumber>:<string> 
+  PUT 1:"hi" 
+ 
+RANDOM : random access disk file 
+  OPEN FILE <file#>,<filename>,RANDOM <record length> 
+  OPEN FILE 2,"subs",RANDOM 88 
+ 
+RANDOMIZE : randomizes random number generator 
+  RANDOMIZE [<seed>] 
+  RANDOMIZE 
+ 
+READ : read data from DATA line or file
+  READ <var list> 
+  READ FILE <file#>[,<rec#>]: <var list> 
+  OPEN [FILE] <filenum>,<filename>,READ
+  READ name$,age
+  READ FILE 2,record: name$,addr$,city$,st$ 
+  OPEN FILE 2,"score",READ 
+ 
+REF : parm var used in reference (alias) 
+  REF <var> 
+  PROC alter(REF text$) CLOSED 
+ 
+RENAME : rename a disk file 
+  RENAME <old filename>,<new filename> 
+  RENAME "temp.sav","final.sav" 
+ 
+RENUM : renumber program 
+  RENUM [<target start>][,<increment>] 
+  RENUM 9000 
+ 
+REPEAT : start of REPEAT structure 
+  REPEAT 
+  REPEAT 
+ 
+REPORT : part of ERROR HANDLER 
+  REPORT [<error code>] 
+  REPORT 
+ 
+RESTORE : reuse DATA with READ 
+  RESTORE [<label>] 
+  RESTORE month'names 
+ 
+RETURN : returns value of a function 
+  RETURN [<value>]
+  RETURN TRUE 
+ 
+RND : random number 
+  RND [(<start num>,<end num>)] 
+  IF RND>.75 THEN try'it 
+  dice=RND(1,6) 
+ 
+ROUND : rounds real number to remove fraction 
+  ROUND(<numeric expression>) 
+  PRINT ROUND(3.5) 
+ 
+RUN : run program in memory or on disk 
+  RUN [<filename>] 
+  RUN 
+ 
+SAVE : store program to disk 
+  SAVE <filename> 
+  SAVE "zombies" 
+ 
+SCAN : scan for correct prgm structure 
+  SCAN 
+  SCAN 
+ 
+SEEK : move RANDOM file pointer 
+  SEEK <file number>,<record>
+  SEEK 1,46 
+ 
+SELECT : choose output location 
+  SELECT [OUTPUT] <type> 
+  SELECT "ds:" 
+ 
+SETDEG : set trig functions to use degrees 
+  SETDEG 
+  SETDEG 
+ 
+SETEXEC : set/reset LIST to show EXEC 
+  SETEXEC<type> 
+  SETEXEC+ 
+ 
+SETLABEL : set/reset LIST to show LABEL 
+  SETLABEL<type> 
+  SETLABEL- 
+ 
+SETLET : set/reset LIST to show LET 
+  SETLET<type> 
+  SETLET+ 
+ 
+SETRAD : set trig functions to use radians (this is the default) 
+  SETRAD 
+  SETRAD 
+ 
+SGN : -1 if neg, 0 if 0, 1 if pos 
+  SGN(<numeric expression>)
+  flag=SGN(number) 
+ 
+SIN : gives sine 
+  SIN(<numeric expression>) 
+  plot(SIN(num),y) 
+ 
+SIZE : report on free memory 
+  SIZE 
+  SIZE 
+ 
+SPC$ : returns # of spaces specified 
+  SPC$(<number of spaces>) 
+  PRINT SPC$(39) 
+ 
+SQR : gives square root 
+  SQR(<numeric expression>) 
+  root=SQR(number) 
+ 
+STEP : increment FOR loop by this amount 
+  STEP <numeric expression> 
+  FOR x=1 TO max STEP 2 DO 
+ 
+STOP : halt program execution 
+  STOP [<message>] 
+  STOP "Now on line 350" 
+
+STR$ : converts number into string 
+  STR$(<number>) 
+  zip$=STR$(number) 
+ 
+SYMBOLS : show all current names and types 
+  SYMBOLS 
+  SYMBOLS 
+ 
+TAB : move cursor to specified column 
+  TAB <position number>: 
+  PRINT TAB col: name$ 
+ 
+TAN : gives tangent 
+  TAN(<numeric expression>) 
+  PRINT TAN(number) 
+ 
+THEN : part of IF structure 
+  THEN 
+  IF ok THEN 
+ 
+TIMES : used in LOOP structure 
+  LOOP <numeric expression> TIMES [<statement>] 
+  LOOP 5 TIMES 
+ 
+TO : part of FOR structure 
+  <start num> TO <end num> 
+  FOR x:=1 TO 4 DO 
+
+TRACE : single step program execution and list each line as executed 
+  TRACE [<filename>] 
+  TRACE "lp:" 
+  TRACE OFF 
+ 
+TRAP : disable escape key or protect against errors 
+  TRAP ESC<type> 
+  TRAP 
+  TRAP ESC- 
+  TRAP // start of error HANDLER 
+ 
+TRUE : predefined value of 1 
+  TRUE 
+  RETURN TRUE 
+ 
+TRUNC : remove fractional part of real number 
+  TRUNC(<numeric expression>) 
+  PRINT TRUNC(3.14) 
+ 
+UNIT : sets the current unit 
+  UNIT <string expression> 
+  UNIT "a:" 
+ 
+UNIT$ : returns current unit 
+  UNIT$ 
+  drive$:=UNIT$ 
+
+UNTIL : end of REPEAT loop 
+  UNTIL <condition> 
+  UNTIL reply$="q" 
+ 
+UPPER$ : returns string in all upper case 
+  UPPER$(<string expression>) 
+  PRINT UPPER$("COMAL is Great!") 
+ 
+USE : use specified package 
+  USE "<package name>" 
+  USE "mouse" 
+ 
+USER : returns start of user memory 
+  USER 
+  PRINT USER 
+ 
+USING : formatted output 
+  PRINT USING <format>: <var list> 
+  PRINT USING "##> $###.##": x, cash(x) 
+ 
+VAL : returns numeric value of string 
+  VAL(<numeric string>) 
+  age=VAL(reply$) 
+ 
+WHEN : choice in CASE structure 
+  WHEN <list of values>
+  WHEN "Jan","jan" 
+ 
+WHILE : start of WHILE structure 
+  WHILE <expression> [DO] [<statement>]
+  WHILE NOT EOF(infile) DO process 
+ 
+WRITE : write to a file 
+  WRITE FILE <file#>[,<rec#>]:<var> 
+  OPEN [FILE] <filenum>,<filename>,WRITE 
+  WRITE FILE 2: name$ 
+  OPEN FILE 3,"scores",WRITE 
+ 
+ZONE : tab interval 
+  ZONE [<tab interval>] 
+  ZONE 5 
+  old'zone:=ZONE 
+

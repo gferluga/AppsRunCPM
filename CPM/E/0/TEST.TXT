@@ -1,0 +1,9 @@
+
+This is a text file created on WS4.
+I am running WS4 on RunCPM emulation. Isn't it cool?
+
+This is actually running inside a VT220 emulation running inside MAME.
+Then RunCPM connects to the virtual "monitor" via a fake serial port.
+
+The result is a very convincing vintage experience.
+

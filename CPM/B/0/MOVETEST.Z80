@@ -1,0 +1,19 @@
+;
+; Test CP/M 3 BIOS calls (MOVE,XMOVE)
+;
+	org 0100h
+
+	jp start
+
+	include bdosequ.lib
+	include display.lib
+
+start
+	ld DE,0000h
+	ld HL,5000h
+	ld BC,0100h
+	call 0FE4Bh
+
+	jp boot
+
+	end

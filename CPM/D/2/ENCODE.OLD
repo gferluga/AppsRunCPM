@@ -1,0 +1,91 @@
+
+		       ENCODE HELP  1-6-85
+
+     ENCODE is pseudo compiler for dBASE II version 2.4 or
+higher command files.  Programs encoded with ENCODE will run
+with the regular version of dBASE II version 2.4 or higher.
+Ashton-Tate's RUNTIME is not required, although it could be
+used.  RUNTIME is simply an amputated version of dBASE II
+that only has the ability to run programs, not edit them.
+
+
+
+
+
+
+
+
+
+
+
+		Calling a Directory Listing
+
+     To call a directory from the title screen simply enter the drive
+you wish to list.
+
+Filename.SRC or Drive:? A:
+
+   This will list the directory of drive A and give the prompt again.
+
+Directory of drive A:
+FOO	.CMD	DBSOURCE.BAS	DBSOURCE.COM	BRUN	.COM	A10	.CMD
+ENCODE	.BAS	ENCODE	.COM	MBASIC	.COM	D	.COM	SAMPLE	.CMD
+BOOKS	.DBF	BOOKS	.FRM	DBASE	.COM	CLS	.DAT	TERMSET	.BAS
+CLEARSET.COM	DBASEMSG.TXT	DBASEOVR.COM	B4	.CMD	C3P0	.CMD
+DB-IND	.BAS	DB-IND	.COM	DOCTOR	.BAS	A10	.SRC	A10	.BAK
+CLONE	.CMD	TEST	.CMD	CLONE	.SRC	A10	.OLD	DBSRC2	.COM
+DBSRC2	.BAS
+Filename.SRC or Drive:?
+
+
+    The ZCPR like drive call of A; will also work to call the directory,
+even if you are not running ZCPR.  The Filename.SRC may be entered here or
+a <RETURN> will redisplay the start screen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			Option
+
+N	No console display of input file. This is the only option.
+
+     The N option must preceded by a space:
+
+Filename.SRC or Drive:? SAMPLE.SRC N
+
+
+
+
+
+
+
+
+
+
+
+
+
+			Help File
+
+     This help file may be called from ENCODE by entering a "?" at the
+title screen.
+
+Filename.SRC or Drive:? ?
+
+
+
+
+		END OF THE HELP FILE

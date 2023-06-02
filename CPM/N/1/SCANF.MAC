@@ -1,0 +1,620 @@
+;C/80 Compiler 3.0 (8/10/83) - (c) 1983 The Software Toolworks
+
+	DSEG
+.e:	DW	0
+	CSEG
+
+.d:	LXI	H,4
+	DAD	SP
+	CALL	h.##
+	SHLD	.e
+.f:	LHLD	.e
+	CALL	g.##
+	MOV	A,H
+	ORA	L
+	JZ	.g
+	LHLD	.e
+	CALL	g.##
+	PUSH	H
+	LXI	H,4
+	DAD	SP
+	CALL	h.##
+	CALL	s.##
+	MOV	A,H
+	ORA	L
+	JZ	.h
+	LHLD	.e
+	INX	H
+	SHLD	.e
+	JMP	.i
+.h:	LHLD	.e
+	RET
+.i:	JMP	.f
+.g:	LXI	H,0
+	RET
+	DSEG
+	CSEG
+
+.j:	LXI	H,.c
+	PUSH	H
+	LXI	H,4
+	DAD	SP
+	CALL	g.##
+	PUSH	H
+	CALL	.d
+	POP	B
+	POP	B
+	RET
+	DSEG
+.l:	DW	0
+	CSEG
+
+.k:	LXI	H,2
+	DAD	SP
+	CALL	h.##
+	SHLD	.l
+	LHLD	.l
+	LXI	D,97
+	CALL	c.le##
+	JZ	.m
+	LHLD	.l
+	LXI	D,122
+	CALL	c.ge##
+.m:	CALL	e.0##
+	JZ	.n
+	LHLD	.l
+	LXI	D,-32
+	DAD	D
+	JMP	.o
+.n:	LHLD	.l
+.o:	RET
+	DSEG
+.p:	DW	0
+.q:	DW	0
+.r:	DW	0
+.s:	DW	0
+.t:	DW	0
+.u:	DW	0
+.v:	DW	0
+.x:	DW	0
+	CSEG
+
+.w:	LHLD	.p
+	MOV	A,H
+	ORA	L
+	JZ	.y
+	LHLD	.x
+	RET
+.y:	LXI	H,-1
+	SHLD	.p
+	LHLD	.q
+	JMP	.ab
+.bb:	CALL	getchar
+	SHLD	.x
+	RET
+.cb:	LHLD	.r
+	PUSH	H
+	CALL	getc
+	POP	B
+	SHLD	.x
+	LXI	D,-26
+	DAD	D
+	CALL	e.0##
+	JZ	.db
+	LHLD	.x
+	RET
+.db:	JMP	.z
+.eb:	LHLD	.v
+	CALL	g.##
+	MOV	A,H
+	ORA	L
+	JZ	.fb
+	LHLD	.v
+	INX	H
+	SHLD	.v
+	DCX	H
+	CALL	g.##
+	SHLD	.x
+	RET
+.fb:	JMP	.z
+.ab:	CALL	.switch##
+	DW	.bb,1
+	DW	.cb,2
+	DW	.eb,3
+	DW	0
+.z:	LXI	H,-1
+	SHLD	.x
+	RET
+	DSEG
+.hb:	DW	0
+	CSEG
+
+.gb:	CALL	.w
+	SHLD	.hb
+	INX	H
+	CALL	e.0##
+	JZ	.ib
+	LXI	H,0
+	SHLD	.p
+	LXI	H,1
+	SHLD	.t
+.ib:	LHLD	.hb
+	RET
+	DSEG
+	CSEG
+
+.jb:	DS	0
+.kb:	CALL	.w
+	PUSH	H
+	CALL	.j
+	POP	B
+	MOV	A,H
+	ORA	L
+	JZ	.lb
+	CALL	.gb
+	JMP	.kb
+.lb:	LXI	H,0
+	SHLD	.t
+	RET
+	DSEG
+.nb:	DW	0
+	CSEG
+
+.mb:	LXI	H,2
+	DAD	SP
+	CALL	h.##
+	SHLD	.nb
+	LXI	D,48
+	CALL	c.le##
+	JZ	.pb
+	LHLD	.nb
+	LXI	D,57
+	CALL	c.ge##
+.pb:	CALL	e.0##
+	JZ	.ob
+	LHLD	.nb
+	LXI	D,-48
+	DAD	D
+	SHLD	.nb
+	JMP	.qb
+.ob:	LHLD	.nb
+	MVI	H,0
+	MOV	A,L
+	ANI	95
+	MOV	L,A
+	SHLD	.nb
+	LXI	D,65
+	CALL	c.le##
+	JZ	.sb
+	LHLD	.nb
+	LXI	D,70
+	CALL	c.ge##
+.sb:	CALL	e.0##
+	JZ	.rb
+	LHLD	.nb
+	LXI	D,-55
+	DAD	D
+	SHLD	.nb
+	JMP	.tb
+.rb:	LXI	H,-1
+	RET
+.tb:	DS	0
+.qb:	LHLD	.s
+	XCHG
+	LHLD	.nb
+	CALL	c.gt##
+	JZ	.ub
+	LHLD	.nb
+	RET
+.ub:	LXI	H,-1
+	RET
+	DSEG
+	CSEG
+
+.vb:	CALL	.jb
+	CALL	.w
+	LXI	D,-48
+	DAD	D
+	MOV	A,H
+	ORA	L
+	JZ	.wb
+	RET
+.wb:	CALL	.gb
+	CALL	.w
+	PUSH	H
+	CALL	.k
+	POP	B
+	LXI	D,-88
+	DAD	D
+	MOV	A,H
+	ORA	L
+	JZ	.xb
+	CALL	.gb
+.xb:	RET
+	DSEG
+
+	PUBLIC	scanff
+.yb:	DW	0
+.zb:	DW	0
+.ac:	DW	0
+.bc:	DW	0
+.cc:	DW	0
+.dc:	DW	0
+.ec:	DW	0
+.fc:	DW	0
+.gc:	DW	0
+.hc:	DW	0
+	CSEG
+
+scanff:	LXI	H,0
+	SHLD	.yb
+	SHLD	.p
+	LXI	H,2
+	DAD	SP
+	SHLD	.fc
+	LHLD	.u
+	DCX	H
+	DCX	H
+	SHLD	.u
+	CALL	h.##
+	SHLD	.hc
+.ic:	LHLD	.hc
+	INX	H
+	SHLD	.hc
+	DCX	H
+	CALL	g.##
+	SHLD	.ec
+	MOV	A,H
+	ORA	L
+	JZ	.kc
+	CALL	.w
+	INX	H
+	CALL	e.0##
+.kc:	CALL	e.0##
+	JZ	.jc
+	LHLD	.ec
+	PUSH	H
+	CALL	.j
+	POP	B
+	MOV	A,H
+	ORA	L
+	JZ	.lc
+	JMP	.ic
+.lc:	LHLD	.ec
+	LXI	D,-37
+	DAD	D
+	MOV	A,H
+	ORA	L
+	JZ	.mc
+	CALL	.jb
+	CALL	.w
+	PUSH	H
+	LHLD	.ec
+	CALL	n.##
+	JZ	.nc
+	JMP	.jc
+.nc:	CALL	.gb
+	JMP	.ic
+.mc:	LXI	H,1
+	SHLD	.zb
+	SHLD	.ac
+	LHLD	.hc
+	CALL	g.##
+	LXI	D,-42
+	DAD	D
+	MOV	A,H
+	ORA	L
+	JNZ	.oc
+	LXI	H,0
+	SHLD	.zb
+	LHLD	.hc
+	INX	H
+	SHLD	.hc
+	JMP	.pc
+.oc:	LHLD	.u
+	DCX	H
+	DCX	H
+	SHLD	.u
+	PUSH	H
+	LHLD	.fc
+	CALL	e.##
+	JZ	.qc
+	JMP	.rc
+.qc:	DS	0
+.pc:	LXI	H,0
+	SHLD	.cc
+	LXI	H,10
+	SHLD	.s
+.sc:	LHLD	.hc
+	INX	H
+	SHLD	.hc
+	DCX	H
+	CALL	g.##
+	SHLD	.ec
+	PUSH	H
+	CALL	.mb
+	POP	B
+	SHLD	.dc
+	INX	H
+	CALL	e.0##
+	JZ	.tc
+	LHLD	.cc
+	XCHG
+	LHLD	.s
+	CALL	c.mult##
+	XCHG
+	LHLD	.dc
+	DAD	D
+	SHLD	.cc
+	JMP	.sc
+.tc:	LHLD	.ec
+	PUSH	H
+	CALL	.k
+	POP	B
+	JMP	.vc
+.wc:	CALL	.vb
+	LXI	H,16
+	SHLD	.s
+	JMP	.xc
+.yc:	LXI	H,8
+	SHLD	.s
+	JMP	.xc
+.zc:	LXI	H,2
+	SHLD	.s
+	JMP	.xc
+.ad:	DS	0
+.bd:	CALL	.jb
+	CALL	.w
+	LXI	D,-45
+	DAD	D
+	MOV	A,H
+	ORA	L
+	JZ	.cd
+	JMP	.xc
+.cd:	LXI	H,-1
+	SHLD	.ac
+	CALL	.gb
+.xc:	DS	0
+.dd:	LXI	H,0
+	SHLD	.bc
+	CALL	.jb
+.ed:	CALL	.w
+	PUSH	H
+	CALL	.mb
+	POP	B
+	SHLD	.dc
+	INX	H
+	CALL	e.0##
+	JZ	.fd
+	LHLD	.bc
+	XCHG
+	LHLD	.s
+	CALL	c.mult##
+	XCHG
+	LHLD	.dc
+	DAD	D
+	SHLD	.bc
+	CALL	.gb
+	LHLD	.cc
+	DCX	H
+	SHLD	.cc
+	MOV	A,H
+	ORA	L
+	JNZ	.gd
+	JMP	.fd
+.gd:	JMP	.ed
+.fd:	LHLD	.t
+	MOV	A,H
+	ORA	L
+	JNZ	.hd
+	JMP	.rc
+.hd:	LHLD	.zb
+	MOV	A,H
+	ORA	L
+	JZ	.id
+	LHLD	.u
+	CALL	h.##
+	PUSH	H
+	LHLD	.ac
+	XCHG
+	LHLD	.bc
+	CALL	c.mult##
+	CALL	q.##
+.id:	JMP	.uc
+.jd:	CALL	.jb
+	LHLD	.zb
+	MOV	A,H
+	ORA	L
+	JZ	.kd
+	LHLD	.u
+	CALL	h.##
+	SHLD	.gc
+.kd:	DS	0
+.ld:	CALL	.w
+	SHLD	.dc
+	INX	H
+	CALL	e.0##
+	JZ	.md
+	LHLD	.dc
+	PUSH	H
+	CALL	.j
+	POP	B
+	MOV	A,H
+	ORA	L
+	JZ	.nd
+	JMP	.md
+.nd:	CALL	.gb
+	LHLD	.zb
+	MOV	A,H
+	ORA	L
+	JZ	.od
+	LHLD	.gc
+	INX	H
+	SHLD	.gc
+	DCX	H
+	PUSH	H
+	LHLD	.dc
+	POP	D
+	MOV	A,L
+	STAX	D
+.od:	LHLD	.cc
+	DCX	H
+	SHLD	.cc
+	MOV	A,H
+	ORA	L
+	JZ	.pd
+	JMP	.qd
+.pd:	JMP	.md
+.qd:	JMP	.ld
+.md:	LHLD	.zb
+	MOV	A,H
+	ORA	L
+	JZ	.rd
+	LHLD	.gc
+	MVI	M,0
+.rd:	LHLD	.t
+	MOV	A,H
+	ORA	L
+	JNZ	.sd
+	JMP	.rc
+.sd:	JMP	.uc
+.td:	CALL	.w
+	INX	H
+	MOV	A,H
+	ORA	L
+	JNZ	.ud
+	JMP	.rc
+.ud:	LHLD	.zb
+	MOV	A,H
+	ORA	L
+	JZ	.vd
+	LHLD	.u
+	CALL	h.##
+	PUSH	H
+	CALL	.w
+	POP	D
+	MOV	A,L
+	STAX	D
+.vd:	CALL	.gb
+	JMP	.uc
+.wd:	JMP	.rc
+	JMP	.uc
+.vc:	CALL	.switch##
+	DW	.wc,88
+	DW	.yc,79
+	DW	.zc,66
+	DW	.ad,72
+	DW	.bd,68
+	DW	.dd,85
+	DW	.jd,83
+	DW	.td,67
+	DW	0
+	JMP	.wd
+.uc:	LHLD	.yb
+	XCHG
+	LHLD	.zb
+	DAD	D
+	SHLD	.yb
+	JMP	.ic
+.jc:	DS	0
+.rc:	LHLD	.q
+	DCX	H
+	DCX	H
+	DCX	H
+	MOV	A,H
+	ORA	L
+	JNZ	.xd
+	LHLD	.yb
+	RET
+.xd:	DS	0
+.yd:	CALL	.w
+	SHLD	.dc
+	INX	H
+	CALL	e.0##
+	JZ	.zd
+	LHLD	.dc
+	LXI	D,-10
+	DAD	D
+	MOV	A,H
+	ORA	L
+	JNZ	.ae
+	JMP	.zd
+.ae:	LHLD	.dc
+	PUSH	H
+	CALL	.j
+	POP	B
+	MOV	A,H
+	ORA	L
+	JZ	.be
+	CALL	.gb
+	JMP	.ce
+.be:	JMP	.zd
+.ce:	JMP	.yd
+.zd:	CALL	.w
+	INX	H
+	CALL	e.0##
+	JZ	.de
+	LHLD	.yb
+	JMP	.ee
+.de:	LXI	H,-1
+.ee:	RET
+	DSEG
+
+	PUBLIC	STK_pos
+	CSEG
+
+STK_pos:	LXI	H,2
+	DAD	SP
+	SHLD	.u
+	RET
+	DSEG
+
+	PUBLIC	scan_f
+	CSEG
+
+scan_f:	LXI	H,1
+	SHLD	.q
+	CALL	scanff
+	RET
+	DSEG
+
+	PUBLIC	f_scan
+	CSEG
+
+f_scan:	LXI	H,2
+	SHLD	.q
+	LHLD	.u
+	DCX	H
+	DCX	H
+	SHLD	.u
+	CALL	h.##
+	SHLD	.r
+	CALL	scanff
+	RET
+	DSEG
+
+	PUBLIC	s_scan
+	CSEG
+
+s_scan:	LXI	H,3
+	SHLD	.q
+	LHLD	.u
+	DCX	H
+	DCX	H
+	SHLD	.u
+	CALL	h.##
+	SHLD	.v
+	CALL	scanff
+	RET
+	EXTRN	getchar
+	EXTRN	getc
+	DSEG
+.c:
+	DB	' '
+	DB	9
+	DB	13
+	DB	10
+	DB	0
+	EXTRN	g.
+	END
+

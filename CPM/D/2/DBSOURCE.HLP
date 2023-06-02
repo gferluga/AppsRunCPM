@@ -1,0 +1,195 @@
+		      DBSOURCE HELP  1-6-85
+
+     DBSOURCE will take a dBASE II command file that has been
+encoded with ENCODE , Ashton-Tates's DBCODE or with Gene Head's
+DB-SQZ5 and generate a runable source file.  DBSOURCE can also
+send the output to the printer or you may view the output on your
+console.
+     This type of file is encoded for one of two reasons.  First,
+it protects the program file from being viewed or modified.  Second,
+The encoded programs run about 30% faster.  I feel that the latter
+reason is far more important.  The level of protection that this
+type of encoding offers is only moderate.  Programs run faster
+because the files are partially tokenized and all comments are
+removed.
+     Encoded command files are for use with dBASE II version
+2.4 or higher.  A decoded file might require some translation to
+run on an earlier version of dBASE II.
+
+
+
+		   Calling a Directory Listing
+
+     To call a directory from the title screen simply enter the drive
+you wish to list.
+
+Filename.CMD or Drive:? A:
+
+   This will list the directory of drive A and give the prompt again.
+
+Directory of drive A:
+FOO	.CMD	DBSOURCE.BAS	DBSOURCE.COM	BRUN	.COM	A10	.CMD
+ENCODE	.BAS	ENCODE	.COM	MBASIC	.COM	D	.COM	SAMPLE	.CMD
+BOOKS	.DBF	BOOKS	.FRM	DBASE	.COM	TERM	.DAT	CLEARSET.BAS
+CLEARSET.COM	DBASEMSG.TXT	DBASEOVR.COM	B4	.CMD	R2D2	.CMD
+INDENT4	.BAS	INDENT4	.COM	ELIZA	.BAS	A10	.SRC	A10	.BAK
+CLONE	.CMD	TEST	.CMD	CLONE	.SRC	A10	.OLD	DBSRC2	.BAS
+DBSRC2	.COM
+Filename.CMD or Drive:?
+
+
+
+    The ZCPR like drive call of A; will also work to call the directory,
+even if you are not running ZCPR.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		Viewing an Encoded dBASE II File
+
+    To view the encoded dBASE II command file "SAMPLE.CMD", simply type
+in the file name at the title screen prompt.
+
+Filename.CMD or Drive:? SAMPLE.CMD
+
+     Just use control S to stop the scrolling of the file or control C to
+quit the program.  The file to be viewed must have the extension .CMD
+
+
+
+
+
+
+
+
+
+
+
+			     Options
+
+P	Send the output to the printer.  Does not generate a file.
+F	Send the output to a file.
+N	Turn off console output.  May be used only in combination
+	with P or F options.
+
+     All options must preceded by a space.  Extra spaces entered with
+the options do not matter.  SAMPLE.CMD P F N is equivalent to
+SAMPLE.CMD PFN.
+
+
+
+
+
+
+
+
+
+
+		     Direct output to Printer
+
+     Use the P option to direct the output to the printer:
+
+Filename.CMD or Drive? SAMPLE.CMD P
+
+     This does not generate a disk file.  It will only print the file and
+display the output on the screen.
+
+
+
+
+
+
+
+
+
+
+
+
+		    Generating a Source File
+
+     To generate a runnable source file from an encoded dBASE II program,
+use the "F" option.
+
+Filename.CMD or Drive:? SAMPLE.CMD F
+
+     This will write a file called SAMPLE.SRC.  If SAMPLE.SRC already exists,
+you will be prompted with the message:
+
+		    []=========[]
+		    [] WARNING []
+		    []=========[]
+
+	       SAMPLE.SRC already exists!
+
+
+Do you wish to overwrite SAMPLE.SRC?
+
+
+     If you answer YES, the old SAMPLE.SRC will be erased and a new
+SAMPLE.SRC will take it's place.  If you answer NO, the old SAMPLE.SRC
+will be renamed to SAMPLE.BAK and you will have a new file named
+SAMPLE.SRC.  If a file named SAMPLE.BAK is already was present on the disk,
+it will be erased.
+     All of the erasing and file name changes are done after the generation
+of a SAMPLE.TMP file.  If there are no errors, the SAMPLE.TMP file is
+renamed to SAMPLE.SRC and all other file changes done.  This prevents the
+replacement of a file with a half finished one.  If all goes well, you should
+never see the temporary file.  It will be present on the disk after DBSOURCE
+is run only if you are running it in the MBASIC interpreter and stop the
+operation in mid stream with control C.  In the compiled version, the
+temporary file is erased when a control C is entered and the entire operation
+is aborted.  This can not be done with the interpreter  as control C suspends
+operation of DBSOURCE.  If you wish to continue with the interpreter,
+type in CONT.  This will pick up operation where you left off and finish the
+file.
+
+
+
+     If everything goes OK and you have a SAMPLE.BAK on the disk, you should
+see the following messages:
+
+Erasing SAMPLE.BAK
+Changing SAMPLE.SRC to SAMPLE.BAK
+Changing SAMPLE.TMP to SAMPLE.SRC
+
+     This is just to let you know what is going on.  With many programs
+there is a rush to check the directory after operation to see if everything
+went OK.  Using DBSOURCE you will know what file operations have been
+done.
+     The "F" option may be used with the "N" option to suppress the console
+output.  Just enter:
+
+Filename.CMD or Drive:? SAMPLE.CMD FN
+
+to have the output go only to the new file.  The new SAMPLE.SRC file will
+be generated slightly faster with the "N" option.
+
+
+     To run the source file, you mast rename it to SAMPLE.CMD.  Do this only
+if you first either move the file to another disk, or erase the existing
+SAMPLE.CMD file.
+     If you want a prettier source file.  Use DBIndent to generate a file
+with the amount of indentation you like.
+
+
+
+
+
+
+
+		      END OF THE HELP FILE
+
+

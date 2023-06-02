@@ -1,0 +1,8 @@
+If you are using this diskette on an IBM PC with an add-on
+Z80 board you will have to convert the .CPM to .COM with
+the appropiate program that was supplied with your board.
+
+If you are running on a Z80 system, that can read IBM PC 
+diskettes, all you need to do is to rename all the .CPM
+files to .COM files.  
+

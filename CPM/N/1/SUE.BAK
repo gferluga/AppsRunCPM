@@ -1,0 +1,19 @@
+#include "heath.h"
+#include "curpos.c"
+
+main()
+{
+CLS;
+SCP;
+ERV;
+CUROFF;
+CURPOS(12,35);
+printf("Hi --- Sue");
+ENABLE25;
+CURPOS(25,35);
+printf("HIIIIIIIIIIII - BAM BAM");
+XRV;
+RCP;
+CURON;
+exit(0);
+}

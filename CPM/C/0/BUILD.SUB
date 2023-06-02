@@ -1,0 +1,3 @@
+; Compile C program
+c309-16 $1.c -LF
+$1

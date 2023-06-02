@@ -1,0 +1,32 @@
+PROGRAM hello;
+
+{ Simple Hello World in SPL }
+
+CONST
+ printStringCmd  = 09h;
+ cr     = 13;
+ lf     = 10;
+ crlf    = cr + 256 * lf;
+
+PROCEDURE BDOS(WORD function, input); EXTERNAL;
+PROCEDURE HALT;       EXTERNAL;
+
+BYTE msg = 'Hello World!$';
+WORD cpmResult;
+
+PROCEDURE CPM2(WORD function, input);
+ BEGIN
+ cpmResult := BDOS(function, input)
+ END CPM2;
+
+PROCEDURE printString(WORD stringp);
+ BEGIN
+ CPM2(printStringCmd, stringp)
+ END printString;
+
+BEGIN
+
+printString(@msg);
+
+END hello.
+

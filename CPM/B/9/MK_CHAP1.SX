@@ -1,0 +1,13 @@
+# mk_chap1.sx - Make the chaper 1 for the SamaruX printed manual
+#
+# Last edited: 19 Sep 2021
+#
+# Use: batch mk_chap1.sx
+#
+echo Making CHAPTER 1
+#
+batch mk_chtit.sx ct1.tmp '1' 'INTRODUCTION'
+batch mk_sect.sx s101.tmp '1.01' 'SamaruX' samarux
+#
+cat nl.tmp >> toc.tmp
+cat ct1.tmp s101.tmp nl.tmp > ch1.tmp

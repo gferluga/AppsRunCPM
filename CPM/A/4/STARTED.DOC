@@ -1,0 +1,62 @@
+CP/M COMAL 2.10 NOTES 
+ 
+These instructions are intended to help you start using the CP/M COMAL system (full or demo). There are three main disks: 
+ 
+1)   CP/M COMAL System disk. This is the full 2.10 COMAL system. 
+2)   CP/M COMAL Demo disk. This is the full 2.10 COMAL with the SAVE, ENTER, and MERGE commands removed. 
+3)   Runtime System disk. This is an optional system that lets you "compile" a COMAL program so it can run on a CP/M system without the need for COMAL. 
+ 
+Any CP/M disk that we distribute cannot be a "bootable" disk. We are not allowed to include the CP/M system tracks on our disks. The disks are distributed on Osborne format disks. This allows most CP/M systems to read the disk. For example: a C128/1571 in CP/M mode can read Osborne format disks without extra commands.
+ 
+You should never write to our original disks. First, copy it to a new disk. Label this new disk "Working COMAL Master" (if it is the Demo disk, add "DEMO" to the label). Use PIP or another copy program to make your new disk. If you want your Working COMAL Master disk to be a "bootable" disk, you must put the CP/M system tracks on the disk yourself, before copying the COMAL files to it (a program to do this was included with CP/M). The COMAL disk doesn't have to be a bootable disk. You can boot CP/M from another disk before starting COMAL. 
+ 
+To start COMAL from CP/M 
+ 
+1)   COMAL and DEMCOMAL are ready for the C128. Other computer systems need COMAL to be installed first. See notes below. 
+2)   Insert the Working COMAL Master disk. 
+3)   a) For Demo COMAL type:  DEMCOMAL 
+     b) For COMAL type:  COMAL 
+ 
+We have some special text files on the disk. You can use the CP/M TYPE command to see them. Better still, use COMAL to read the files. After starting COMAL, just type this command: 
+ 
+     RUN "Hi" 
+
+Demo COMAL even prints this command on your start up screen, so you can just cursor up twice to that line and press <return>. 
+ 
+These text files summarize the commands that CP/M COMAL understands, along with the proper syntax and an example. If you have a printer, it would be helpful for you to print out these files. 
+ 
+Also included on the COMAL Demo disk are some example COMAL programs. To see a list of all these programs, issue this COMAL command: 
+ 
+     DIR "*.SAV" 
+ 
+To run any of these programs, type: 
+ 
+     RUN "name" 
+ 
+Make sure to include the quotation marks, and of course, in place of name you will type the name of the program you wish to run. To just see a COMAL program, use the command LOAD rather than RUN. Then type the command: 
+ 
+     LIST 
+ 
+COMAL will automatically pause the listing of the program after one screen full is shown. Press <space bar> to continue. 
+ 
+To save a COMAL program on disk for future use, just type this command: 
+ 
+     SAVE "name" 
+ 
+Note: The SAVE commmand is disabled in the COMAL demo system. 
+ 
+How To Install COMAL 
+ 
+1)   Make sure CP/M is up and running and the current drive is A -- ( A> prompt ). 
+2)   Insert your Working COMAL Master disk. Do not swap disks during this procedure. The files INSTALL.COM, INSTALL.DAT, and the COMAL.COM or DEMCOMAL.COM must be on the same disk. 
+3)   Type the command:  INSTALL 
+4)   The INSTALL system asks for the program name. To install the COMAL system just hit <return>. To install the COMAL Demo system, type: DEMCOMAL 
+5)   Choose option D by typing: D 
+     Don't press <return>. You then are given a choice of several computer systems. * 
+6)   Type the letter next your computer: _ 
+7)   You are done. Type:  G 
+8)   Save the newly installed COMAL. Type:  Y 
+9)   To the RUNTIME question type:  N 
+10)  You are back in CP/M mode ( A> prompt ). Your COMAL system is installed. 
+*    If your computer is not on the list, you can install it the hard way using main menu choices, A, B, E, and G. For more info see the INSTALL appendix in the manual.
+

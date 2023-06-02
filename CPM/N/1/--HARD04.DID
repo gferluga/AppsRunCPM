@@ -1,0 +1,129 @@
+--HARD04.DID --HARD04.DID 020285                                           
+--HARD04.DID AS.COM       101183 Absolute 8080 ASM for C/80 output files   
+--HARD04.DID BELL.C       013185 rings bell                                
+--HARD04.DID BELL.COM     013185 rings bell                                
+--HARD04.DID BIT-ROT.C           EI rotate bits                            
+--HARD04.DID BIT-SHFT.C          EI shift bits                             
+--HARD04.DID C.COM                                                         
+--HARD04.DID CCONFIG.COM         To change defaults in C.COM               
+--HARD04.DID CLEAR25.BAK                                                   
+--HARD04.DID CLEAR25.C                                                     
+--HARD04.DID CLEAR25.COM                                                   
+--HARD04.DID CLIBIO.C            Source for I/O & system code of CLIBRARY  
+--HARD04.DID CLIBRARY.ASM        C/80 library                              
+--HARD04.DID CLICK.C             key click function off/on                 
+--HARD04.DID CLS.C        012685 EI clear the screen                       
+--HARD04.DID CMP.C               Sample to compare two files               
+--HARD04.DID COLOR.C             EI fore/back color for Z-100              
+--HARD04.DID COMMAND.C           Rtne to expand file wildcards in comm line
+--HARD04.DID CPROF.C             Runtime execution profile lib-must be on A
+--HARD04.DID CREF80.COM          Cross Ref for Macro 80                    
+--HARD04.DID CTRACE.ASM          Trace for routine call and return(CPROF.C)
+--HARD04.DID CURPOS.C                                                      
+--HARD04.DID EX00.C       013185                                           
+--HARD04.DID EX00.COM                                                      
+--HARD04.DID EX02.C                                                        
+--HARD04.DID EX02.COM                                                      
+--HARD04.DID EX03.C                                                        
+--HARD04.DID EX03.COM                                                      
+--HARD04.DID EX04.C                                                        
+--HARD04.DID EX05.C                                                        
+--HARD04.DID EX05.COM                                                      
+--HARD04.DID EX06.C                                                        
+--HARD04.DID EX06.COM                                                      
+--HARD04.DID EX07.C                                                        
+--HARD04.DID EX07.COM                                                      
+--HARD04.DID EX08.C                                                        
+--HARD04.DID EX08.COM                                                      
+--HARD04.DID EX09.C                                                        
+--HARD04.DID EX09.COM                                                      
+--HARD04.DID EX10.C                                                        
+--HARD04.DID EX10.COM                                                      
+--HARD04.DID EX11.C                                                        
+--HARD04.DID EX12.C                                                        
+--HARD04.DID EX13.C                                                        
+--HARD04.DID EX14.C                                                        
+--HARD04.DID EX15.C                                                        
+--HARD04.DID EX16.C                                                        
+--HARD04.DID EX17.C                                                        
+--HARD04.DID EX18.C                                                        
+--HARD04.DID EX19.C                                                        
+--HARD04.DID EX20.C       012185                                           
+--HARD04.DID EX21.C                                                        
+--HARD04.DID EX22.BAK                                                      
+--HARD04.DID EX22.C                                                        
+--HARD04.DID EX22.COM                                                      
+--HARD04.DID EX23.C                                                        
+--HARD04.DID EX24.C                                                        
+--HARD04.DID EX25.C                                                        
+--HARD04.DID EX26.C                                                        
+--HARD04.DID EX27.C                                                        
+--HARD04.DID EX28.C                                                        
+--HARD04.DID EX29.C                                                        
+--HARD04.DID EX30.C                                                        
+--HARD04.DID EX31.C                                                        
+--HARD04.DID EX32.C                                                        
+--HARD04.DID EX33.C                                                        
+--HARD04.DID EX34.C                                                        
+--HARD04.DID AREA.C       020285 EI example 35 for area of a house         
+--HARD04.DID EX36.C                                                        
+--HARD04.DID EX37.C                                                        
+--HARD04.DID EX38.C                                                        
+--HARD04.DID EX39.C                                                        
+--HARD04.DID EX40.C                                                        
+--HARD04.DID EX41.C                                                        
+--HARD04.DID EX42.C                                                        
+--HARD04.DID EX43.C                                                        
+--HARD04.DID EX44.C                                                        
+--HARD04.DID EX45.C                                                        
+--HARD04.DID EX46.C                                                        
+--HARD04.DID EX47.C                                                        
+--HARD04.DID EX48.C                                                        
+--HARD04.DID EX49.C                                                        
+--HARD04.DID EX50.C                                                        
+--HARD04.DID EX51.C                                                        
+--HARD04.DID EXEC.C              Routine to chain to another COM file      
+--HARD04.DID FACTOR.C            EI calc factorial of an integer           
+--HARD04.DID GETBITS.C           ei                                        
+--HARD04.DID GETLINE.C           EI                                        
+--HARD04.DID GETSTRG.C           EI                                        
+--HARD04.DID HEATH.H                                                       
+--HARD04.DID HEATH.OLD    012285 wma Heath Preprocessor library base EI    
+--HARD04.DID HELLO.C             Sample for "Hello"                        
+--HARD04.DID IO1.C               EI                                        
+--HARD04.DID IO2.C               EI                                        
+--HARD04.DID IO3.C               EI                                        
+--HARD04.DID IO4.C               EI                                        
+--HARD04.DID IO5.C               EI                                        
+--HARD04.DID IO6.C               EI                                        
+--HARD04.DID L80.COM             Linker for Macro 80                       
+--HARD04.DID LC.COM                                                        
+--HARD04.DID LIB.COM             Library for Macro 80                      
+--HARD04.DID LOCATE.C            EI cursor addressing                      
+--HARD04.DID M80.COM             Macro 80 assembler                        
+--HARD04.DID MORE.C              EI                                        
+--HARD04.DID NEC.H               EI for NEC console                        
+--HARD04.DID PDL.H               EI                                        
+--HARD04.DID PRINTF.C            C/80 formatted output routines            
+--HARD04.DID PRINTF.H            Header for PRINTF                         
+--HARD04.DID PRINTF.MAC                                                    
+--HARD04.DID PUTS.C                                                        
+--HARD04.DID PUTS.MAC                                                      
+--HARD04.DID PUTS1.C                                                       
+--HARD04.DID PUTS2.C                                                       
+--HARD04.DID RESET.C             EI Reset to power up config               
+--HARD04.DID SCANF.C             C/80 formatted input routines             
+--HARD04.DID SCANF.H             Header file for scanf in source files     
+--HARD04.DID SCANF.MAC                                                     
+--HARD04.DID SEEK.C              Random access file I/O routines           
+--HARD04.DID STC.COM      102583 ST C COMPILER                             
+--HARD04.DID STDLIB.C     012685 C & assembly routines library             
+--HARD04.DID SUE.BAK                                                       
+--HARD04.DID SUE.C                                                         
+--HARD04.DID SUE.O                                                         
+--HARD04.DID TAB.C               Sample-copy file--repl blanks by tabs     
+--HARD04.DID TPRINTF.C           PRINTF without left justify or precision  
+--HARD04.DID TREE.C              Sample showing the use of structures      
+--HARD04.DID UPDATE.OUT          EI manual errata                          
+onfig               
+--HARD04.DID SCANF.C             C/80 formatted input 

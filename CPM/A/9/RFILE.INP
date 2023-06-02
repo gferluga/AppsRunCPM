@@ -1,0 +1,10 @@
+;
+;		CRCK.ASM version 4.2B
+;	      by Keith Petersen, W8SDZ
+;		(REVISED 4/27/ BY BRK)
+;
+;----> NOTE: MUST BE ASSEMBLED BY MAC <----
+;
+;CRCK is a program to read any CP/M file and print
+;a CYCLIC-REDUNDANCY-CHECK number based on the
+;CCITT standard

@@ -1,0 +1,59 @@
+;C/80 Compiler 3.0 (8/10/83) - (c) 1983 The Software Toolworks
+
+	DSEG
+
+	PUBLIC	puts
+.d:	DW	0
+	CSEG
+
+puts:	LHLD	.d
+	PUSH	H
+	LXI	H,0
+	SHLD	.d
+.g:	LXI	H,6
+	DAD	SP
+	CALL	h.##
+	XCHG
+	LHLD	.d
+	DAD	D
+	PUSH	H
+	CALL	getchar
+	POP	D
+	MOV	A,L
+	STAX	D
+	CALL	e.0##
+	JZ	.h
+	LXI	H,4
+	DAD	SP
+	CALL	h.##
+	DCX	H
+	XCHG
+	LHLD	.d
+	CALL	c.gt##
+.h:	CALL	e.0##
+	JZ	.f
+	JMP	.i
+.e:	LHLD	.d
+	INX	H
+	SHLD	.d
+	JMP	.g
+.i:	JMP	.e
+.f:	LXI	H,6
+	DAD	SP
+	CALL	h.##
+	XCHG
+	LHLD	.d
+	DAD	D
+	MVI	M,10
+	LXI	H,6
+	DAD	SP
+	CALL	h.##
+.j:	XCHG
+	POP	H
+	SHLD	.d
+	XCHG
+	RET
+	EXTRN	getchar
+	EXTRN	g.
+	END
+

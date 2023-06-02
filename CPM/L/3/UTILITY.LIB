@@ -1,0 +1,184 @@
+%File:	UTILITY.LIB		08/11/80	The Soft Warehouse %
+
+(PROG1 ""
+  (PUTD DEFUN (QUOTE (NLAMBDA (FUNC DEF)
+    (PUTD FUNC DEF)
+    FUNC ))) )
+
+
+% Function APPEND returns a list consisting of the elements of LST1
+appended to LST2. %
+
+(DEFUN APPEND (LAMBDA (LST1 LST2)
+  ((NULL LST1) LST2)
+  (CONS (CAR LST1) (APPEND (CDR LST1) LST2)) ))
+
+
+% Function COPY returns a copy of its argument. %
+
+(DEFUN COPY (LAMBDA (EXPN)
+  ((ATOM EXPN) EXPN)
+  (CONS (COPY (CAR EXPN)) (COPY (CDR EXPN))) ))
+
+
+% Function UNION returns the union of LST1 and LST2. %
+
+(DEFUN UNION (LAMBDA (LST1 LST2)
+  ((NULL LST1) LST2)
+  ((MEMBER (CAR LST1) LST2)
+    (UNION (CDR LST1) LST2))
+  (CONS (CAR LST1) (UNION (CDR LST1) LST2)) ))
+
+
+% Function INTERSECTION returns the intersection of LST1 and LST2. %
+
+(DEFUN INTERSECTION (LAMBDA (LST1 LST2)
+  ((NULL LST1) NIL)
+  ((MEMBER (CAR LST1) LST2)
+    (CONS (CAR LST1) (INTERSECTION (CDR LST1) LST2)))
+  (INTERSECTION (CDR LST1) LST2) ))
+
+
+% Function SUBSET is a comparator returning T iff LST1 is a subset
+of LST2. %
+
+(DEFUN SUBSET (LAMBDA (LST1 LST2)
+  ((NULL LST1))
+  ((MEMBER (CAR LST1) LST2)
+    (SUBSET (CDR LST1) LST2)) ))
+
+
+% Function SUPERREVERSE returns a list of the elements of LST1
+reversed at all levels. %
+
+(DEFUN SUPERREVERSE (LAMBDA (LST1 LST2)
+  ((NULL LST1) LST2)
+  ((ATOM (CAR LST1))
+    (SUPERREVERSE (CDR LST1) (CONS (CAR LST1) LST2)))
+  (SUPERREVERSE (CDR LST1) (CONS (SUPERREVERSE (CAR LST1)) LST2)) ))
+
+
+% Function REMBER is a constructor returning a list in which all
+occurrences of ATM has been removed from LST. %
+
+(DEFUN REMBER (LAMBDA (ATM LST)
+  ((NULL LST) NIL)
+  ((EQ ATM (CAR LST))
+    (REMBER ATM (CDR LST)) )
+  (CONS (CAR LST) (REMBER ATM (CDR LST))) ))
+
+
+% Function SUBST is a constructor returning the expression resulting
+from replacing all occurrences of OLD by NEW in EXPN. %
+
+(DEFUN SUBST (LAMBDA (OLD NEW EXPN)
+  ((EQUAL OLD EXPN) NEW)
+  ((ATOM EXPN) EXPN)
+  (CONS (SUBST OLD NEW (CAR EXPN)) (SUBST OLD NEW (CDR EXPN))) ))
+
+
+% Function NTH is a selector which returns the result of
+removing the first NUM elements from the list LST. %
+
+(DEFUN NTH (LAMBDA (LST NUM)
+  ((NOT (PLUSP NUM))
+    LST )
+  (LOOP
+    (SETQ LST (CDR LST))
+    (SETQ NUM (SUB1 NUM))
+    ((ZEROP NUM)
+      LST ) ) ))
+
+
+% Function GENSYM is a constructor which returns a new name
+of the form Gxxxx where xxxx is a number incremented each
+time GENSYM is called. %
+
+(SETQ GENSYM 0)
+ 
+(DEFUN GENSYM (LAMBDA (NUM LST)
+  (SETQ NUM (DIFFERENCE 4 (LENGTH GENSYM)))
+  (LOOP
+    ((ZEROP NUM))
+    (PUSH 0 LST)
+    (SETQ NUM (SUB1 NUM)) )
+  (PROG1
+    (PACK (NCONC (CONS (QUOTE G) LST) (LIST GENSYM)))
+    (SETQ GENSYM (ADD1 GENSYM)) ) ))
+
+
+% Function MAX returns the greater of two numbers. %
+
+(DEFUN MAX (LAMBDA (M N)
+  ((GREATERP M N) M)
+  N ))
+
+
+(DEFUN ADD1 (LAMBDA (NUM)
+  (PLUS NUM 1) ))
+
+(DEFUN SUB1 (LAMBDA (NUM)
+  (DIFFERENCE NUM 1) ))
+
+
+% Function DEPTH returns the maximum depth of an expression. %
+
+(DEFUN DEPTH (LAMBDA (EXPN)
+  ((ATOM EXPN) 0)
+  (ADD1 (MAX (DEPTH (CAR EXPN)) (DEPTH (CDR EXPN)))) ))
+
+
+% Function ABS returns the absolute value of NUM. %
+
+(DEFUN ABS (LAMBDA (NUM)
+  ((MINUSP NUM)
+    (MINUS NUM) )
+  NUM ))
+
+
+% Function FACTORIAL returns NUM factorial. %
+
+(DEFUN FACTORIAL (LAMBDA (NUM
+    ANS )
+  ((NOT (GREATERP NUM -1)) NIL)
+  (SETQ ANS 1)
+  (LOOP
+    ((EQ NUM 0) ANS)
+    (SETQ ANS (TIMES NUM ANS))
+    (SETQ NUM (SUB1 NUM)) ) ))
+
+
+% Function POWER returns NUM1 raised to the NUM2 power.  NUM3
+is a local or temporary variable for the function POWER. %
+
+(DEFUN POWER (LAMBDA (NUM1 NUM2
+    NUM3 )
+  (SETQ NUM3 1)
+  (LOOP
+    (SETQ NUM2 (DIVIDE NUM2 2))
+    ( ((EQ (CDR NUM2) 1)
+	(SETQ NUM3 (TIMES NUM1 NUM3)) ) )
+    (SETQ NUM2 (CAR NUM2))
+    ((ZEROP NUM2) NUM3)
+    (SETQ NUM1 (TIMES NUM1 NUM1)) ) ))
+
+
+% Function GCD returns the Greatest Common Divisor of NUM1 and
+NUM2. %
+
+(DEFUN GCD (LAMBDA (NUM1 NUM2
+    NUM3 )
+  (LOOP
+    ((ZEROP NUM2) NUM1)
+    (SETQ NUM3 NUM2)
+    (SETQ NUM2 (REMAINDER NUM1 NUM2))
+    (SETQ NUM1 NUM3) ) ))
+
+
+% The following are examples of Mapping Functions equivalent to
+the definitions found in LISP tutorials. %
+
+(DEFUN MAPC (LAMBDA (LST FUN)
+  (LOOP
+    ((NULL LST) NIL)
+   þÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿþÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿþÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿþÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿþÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿþÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿþÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿþÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿþÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿþÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ

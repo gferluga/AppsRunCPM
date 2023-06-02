@@ -1,0 +1,68 @@
+/************************************************************************
+WMA
+     heath.h - a preprocessor for Heath/Zenith H/Z-89 & H/Z-100
+
+      Also see file PDL.H (Program Design Language Definitions).
+
+*************************************************************************/
+
+#define BEL	 putchar('\07')		/* Ring Bell		*/
+
+/*	Cursor Movement		*/
+#define CUL	 printf("\033D")  	/* Move Cursor Left 	*/
+#define CUR	 printf("\033C")  	/* Move Cursor RIGHT	*/
+#define CUU	 printf("\033A")  	/* Move Curosr Up	*/
+#define CUD	 printf("\033B")  	/* Move Cursor Down 	*/
+#define CUH	 printf("\033H")  	/* Cursor Home		*/
+
+/*	Cursor Control		*/
+#define SCP   	  printf("\033j")  	/* Save Cursor Position	*/
+#define RCP	  printf("\033k")  	/* Reset Cursor postion	*/
+#define CURSON	  printf("\033y5") 	/* Turn Cursor on	*/
+#define CURSOFF   printf("\033x5") 	/* Turn Cursor off	*/
+#define BLOCKCURS printf("\033x4") 	/* Block Cursor		*/
+/* Reverse Index */
+/* Direct Addressing */
+/* Save position */
+/* Previous Position */
+
+/*	Delete Functions	*/
+/* Delete Character */
+/* Delete Line */
+
+/*	Erase Functions		*/
+#define CLS	  printf("\033E")  /* Clear the screen 		*/
+#define EEL	  printf("\033l")  /* Erase Entire Line		*/
+#define EBD	  printf("\033b")  /* Erase Beginning of Display	*/
+#define EOP	  printf("\033J")  /* Erase to End of Page		*/
+#define EBL	  printf("\033o")  /* Erase Beginning of Line		*/
+#define EOL	  printf("\033K")  /* Erase to End of Line		*/
+
+/*	Graphics Mode		*/
+#define EGM	  printf("\033F")  /* Enter Graphics Mode		*/
+#define XGM	  printf("\033G")  /* Exit Graphics Mode		*/
+
+/*	Keyboard Control	*/
+/* Disable */
+/* Enable */
+
+/*	Keypad Control		*/
+/* Enter Shift */
+/* Exit Shift */
+
+/*	Reset to Power Up 	*/
+#define RESETALL	printf("\033z")	/* Reset to power up */
+
+/*	Reverse Video Mode	*/
+#define ERV	  printf("\033p")  /* Enter Reverse Video		*/
+#define XRV	  printf("\033q")  /* Exit Reverse Video		*/
+
+#define ENABLE25  printf("\033j\033x1") /* Enable the 25th line	*/
+#define INKEY	  printf(1,0)	    /* CP/M Function Call #1		*/
+#define PRINT(X)  printf("X")	    /* CP/M Function Call #9		*/
+#define YES	  1		    /* TRUE				*/
+#define NO	  0		    /* FALSE				*/
+#define AEOF	  0x1A		    /* ASII EOF for CP/M compatibility	*/
+#define MAXLEN	  80
+/*#define void	  int		    void not supported		*/
+

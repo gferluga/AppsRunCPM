@@ -1,0 +1,467 @@
+	  DOCUMENTATION FOR DBSOURCE AND ENCODE  1-6-85
+
+	      Copyright (C) 1985 by Merlin R. Null
+
+
+    The DBSOURCE library should contain the following files:
+
+DBSOURCE.DOC	This general library documentation.
+DBSOURCE.COM	DBSOURCE, reads encoded dBASE II command files.
+DBSOURCE.BAS	The MBASIC Source for the above program.
+DBSOURCE.HLP	Help file for DBSOURCE.
+DBSRC2.COM	A variant of DBSOURCE
+DBSRC2.BAS	The MBASIC Source for the above program.
+ENCODE.COM	ENCODE, pseudo compiles dBASE II command files
+		to run about 30% faster.
+ENCODE.BAS	The MBASIC Source for the above program.
+ENCODE.HLP	Help file for ENCODE.
+CLEARSET.COM	Writes CLS.DAT, a file containing the clear screen
+		information used in all of the above programs.
+CLEARSET.BAS	The MBASIC Source for the above program.
+CLS.DAT		Clear Screen data file.  Distribution version is for
+		the STM Pied Piper.
+
+NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE
+
+THE CLS.DAT HAS BEEN SET UP FOR THE KAYPRO AND OSBORNE
+THE PROGRAMS HAVE BEEN COMPILED WITH OSLIB SO THAT THEY RUN WITHOUT BRUN.COM
+
+NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE:NOTE
+		
+
+*************	Microsoft's BRUN.COM is required to run any of the
+* IMPORTANT *	COM files listed above.  They are in compiled MBASIC.
+*************	If you do not have MBASIC.COM or BRUN.COM, none of
+		these programs will do anything other than take up
+		disk space.  If at all possible (you must have BRUN)
+		use the compiled versions.  They are up to 10 times
+		faster.  The interpreted versions will do a good job,
+		they just take a little longer.  The compiled versions
+		are in 8080 code.  They will run on an 8080 or Z80
+		machine.
+
+
+		 Running the DB-Utility Programs
+
+     First call the programs by entering MBASIC <filename>, if
+you have only MBASIC.  If you have Microsoft's BRUN.COM the
+BASCOM run time package, use the COM file by entering <filename>
+at the CP/M prompt.  BRUN.COM must be on the same disk as the
+program you wish to run.  These programs were written in MBASIC
+version 5.21.  Most of them will not run in OBASIC, Microsoft's
+older version of BASIC (4.51 or earlier), due to the use of
+WHILE-WEND loops.
+
+
+		   Calling a Directory Listing
+
+     DBSOURCE, DBSRC2 and ENCODE use a similar command for listing a
+directory at the title screen.
+
+     To call a directory from the title screen simply enter the
+drive you wish to list.  This sample is from DBSOURCE:
+
+Filename.CMD or Drive:? A:
+
+   This will list the directory of drive A and give the prompt
+again.
+
+Directory of drive A:
+FOO	.CMD	DBSOURCE.BAS	DBSOURCE.COM	BRUN	.COM	A10	.CMD
+ENCODE  .BAS	ENCODE  .COM	MBASIC	.COM	D	.COM	SAMPLE	.CMD
+BOOKS	.DBF	BOOKS	.FRM	DBASE	.COM	CLS	.DAT	CLEARSET.BAS
+CLEARSET.COM	DBASEMSG.TXT	DBASEOVR.COM	B4	.CMD	R2D2	.CMD
+DB-IND	.BAS	DB-IND	.COM	ELIZA	.BAS	A10	.SRC	A10	.BAK
+CLONE	.CMD	TEST	.CMD	CLONE	.SRC	A10	.OLD	DBSRC2	.BAS
+DBSRC2	.COM
+Filename.CMD or Drive:?
+
+    The ZCPR like drive call of A; will also work to call the
+directory, even if you are not running ZCPR.  The Filename.CMD
+may be entered here or a <RETURN> will redisplay the start
+screen.
+
+======================================================================
+
+
+			  INSTALLATION
+
+     To run any of the first eight .COM or .BAS programs in the
+this library, you should run CLEARSET first.  CLEARSET generates
+the information needed by your terminal to do the clear screen
+function.  It does this by writing the small file, CLS.DAT.  If
+you were to type the CLS.DAT file, you might see this:
+
+126
+28
+26
+
+     These numbers are the decimal values of the clear screen
+command.  You can also use CLEARSET to cause the programs to use
+scrolling instead of clear screen.  The distribution copy of
+CLS.DAT, the file written by CLEARSET, is set for the STM Pied
+Piper.  It is a combination of the Hazeltine 1500 and ADM-3A
+clear screen commands.  This will work on many other terminals.
+     If you do not have a copy of CLS.DAT on the same disk as the
+other programs on this disk, you will get an error message:
+
+CLS.DAT not found.  Please run CLEARSET to generate it.
+
+And, you will be returned to CP/M.
+
+     When you run CLEARSET you will get the following menu:
+
+1. ADM-3A, Televideo 912	(Kaypro, Osborne)
+2. ADM-31, Televideo 950
+3. Hazeltine 1500
+4. STM Pied Piper		(Combination of Hazeltine 1500 and ADM-3A)
+5. DEC VT52			(Telcon Zorba)
+6. Custom installation
+7. I don't know.  Use scrolling.
+8. Exit without changing CLS.DAT
+
+     Select your terminal from numbers 1 thru 5, if it is listed.
+Use choice number 6 if you know what the clear screen command is
+for your terminal.
+    To use the custom installation, you must find the DECIMAL
+values of your terminal's clear screen command.  For example, if
+your clear screen command is ESCAPE *, you will need to enter as
+follows:
+
+Enter your clear screen sequence in ASCII decimal numbers.
+Enter <RETURN> to end sequence.
+
+Example: for <ESCAPE> enter 27, for * enter 42.
+
+Clear screen sequence character number 1 ? 27
+Clear screen sequence character number 2 ? 42
+Clear screen sequence character number 3 ? <RETURN>
+
+     You should then see:
+
+CLS.DAT Written.
+
+     The clear screen commands are entered in DECIMAL numbers not
+HEX.  If you don't like clear screen in a program or you really
+don't know what your terminal uses for clear screen, select:
+
+7. I don't know.  Use scrolling.
+
+     You will then be asked:
+
+How many blank lines do you want for scrolling?
+
+     Any number from 1 to 24 will be accepted.	Numbers larger
+than 24 default to 24.	Numbers less than 1 default to 1.  If you
+do not mind some old information staying on screen when you run
+the program, use 1.  If you wish all old lines to scroll off
+screen, use at least 12.  More might be required.  24 will be
+sure to get everything off screen, but it makes operation a
+little slower.
+     The clear screen command makes operation much faster.  It is
+highly recommended.  If you do not know your clear screen
+command, try several of the menu selections to see if one of them
+works.  Most of the common ones are covered by the menu listings.
+     CLEARSET could be adapted for many MBASIC programs.  It
+makes an MBASIC program that uses a clear screen function
+configureable for many different terminals without modifying the
+source code.
+     To use the CLS.DAT file written by ClearSet with another
+MBASIC program, just copy in the routine at the beginning of any
+of the dBASE utility programs and add the error handling routine
+from the end.  Then when the program is run, it will read CLS.DAT
+and enter the values in CLS$ for use throughout the program.
+
+======================================================================
+
+
+			    DBSOURCE
+
+     DBSOURCE will take a dBASE II command file that has been
+encoded with ENCODE , Ashton-Tates's DBCODE or with Gene Head's
+DB-SQZ5 and generate a runable source file.  DB-Source can also
+send the output to the printer or you may view the output on your
+console.  It will not decode a dBASE III file.  DBCODE for dBASE
+III uses a more complex partial compiler.
+     This type of file is encoded for one of two reasons.  First,
+it protects the program file from being viewed or modified.
+Second, the encoded programs run about 30% faster.  I feel
+that the latter reason is far more important.  The level of
+protection that this type of encoding offers is only moderate.
+Programs run faster because the files are partially tokenized and
+all comments are removed.
+     Encoded command files are for use with dBASE II version 2.4
+or higher.  A decoded file might require some translation to run
+on an earlier version of dBASE II.
+
+			    Help File
+
+     The help file may be called from DB-Source by entering a "?"
+at the title screen.  It contains several screens of condensed
+information on how to run DB-Source.
+
+Filename.CMD or Drive:? ?
+
+
+		Viewing an Encoded dBASE II File
+
+    To view the encoded dBASE II command file "SAMPLE.CMD",
+simply type in the file name at the title screen prompt.
+
+Filename.CMD or Drive? SAMPLE.CMD
+
+     Just use control S to stop the scrolling of the file or
+control C to quit the program.  The file to be viewed must have
+the extension .CMD
+
+
+			     Options
+
+P	Send the output to the printer.  Does not generate a file.
+F	Send the output to a file.
+N	Turn off console output.  May be used only in combination
+	with P or F options.
+
+     Options must preceded by a space.  Extra spaces entered with
+the options do not matter.  SAMPLE.CMD P F N is equivalent to
+SAMPLE.CMD PFN.
+
+
+		     Direct output to Printer
+
+     Use the P option to direct the output to the printer:
+
+Filename.CMD or Drive? SAMPLE.CMD P
+
+     This does not generate a disk file.  It will only print the
+file and display the output on the screen.
+
+
+		     Creating a source File
+
+     To generate a runnable source file from an encoded dBASE II
+.CMD program, use the F option:
+
+Filename.CMD or Drive? SAMPLE.CMD F
+
+     This will write a file called SAMPLE.SRC.  If SAMPLE.SRC
+already exists, you will be prompted with the message:
+
+		    []=========[]
+		    [] WARNING []
+		    []=========[]
+
+SAMPLE.SRC already exists!  A 'NO' here will cause the current
+SAMPLE.SRC to be renamed to SAMPLE.BAK
+
+
+Do you wish to overwrite SAMPLE.SRC (Yes/No/Quit)?
+
+     The output file will be named SAMPLE.SRC.  After you move
+this file to another disk and rename it to SAMPLE.CMD, it should
+run the same, only somewhat slower, as the encoded original.
+
+
+			No console output
+
+     The N option shuts off the normal presentation of the output
+file on the console.  This helps speed up generation of a file or
+printing of the output.  It can not be used unless the F or P
+options are used.  I do not like it with the F option.  I prefer
+to see that the decoding is being done correctly.
+
+			How does it work?
+
+     Files that have been pseudo compiled by DBCODE, ENCODE
+or DB-SQZ5 have the first reserved word en each line tokenized.
+The tokens are bytes with decimal values between 128 and 194.
+128 represents IF, 129 is ELSE, 130 is ENDIF etc.  Examine at the
+lookup table at the end of DBSOURCE, if you are curious.
+     The space at the end of the reserved word has been removed
+and the rest of the line converted to high order bytes by XORing
+them with 255.
+     To decode, DBSOURCE just creates a print string starting
+with the reserved word found in the table, adds a space and then
+adds to it byte by byte using XOR 255 to return to the original
+value.
+
+======================================================================
+
+
+			   DBSOURCE II
+
+     DBSOURCE II was created to decode several programs that had
+either included some additional encoding to mix up the reserved
+words. Or, I ran into something that was encoded by a variation
+of DBCODE.  If you decode a file with DB-Source and there are
+some strange placements of reserved words, you should try
+DB-Source II on it.  You might see something like QUIT in the
+middle of the file or UNLOCK in place of some other word.
+
+     If you find that there are still errors in keyword
+translation with either DBSOURCE or DBSOURCE II, you may want
+to generate your own version of DBSOURCE.  Examine the remarks
+just before the table of reserved words in DB-Source II to see
+what I did to generate this variant.  It involves substituting
+reserved words in the table.  If you remove a word from the table
+and put it at the end,  all reserved words located after the
+removal will be offset by one.  This was done with DBSOURCE II.
+If you find only a single keyword is wrong, you should make a
+swap with the correct word in the DATA statements.
+
+======================================================================
+
+
+			     ENCODE
+
+     ENCODE is pseudo compiler for dBASE II version 2.4 or
+higher command files.  Programs encoded with ENCODE will run
+with the regular version of dBASE II version 2.4 or higher.
+Ashton-Tate's RUNTIME is not required, although it could be
+used.  RUNTIME is simply an amputated version of dBASE II
+that only has the ability to run programs, not edit them.
+     ENCODE creates a partially tokenized file that can not be
+listed with anything but DBSOURCE or a commercial decoder.  HILCO
+Software has been offering DECODE and RECODE as a package to do
+the same thing as DBSOURCE and ENCODE.  I have not had the
+opportunity to try them, so I can't say how they compare to
+DBSOURCE and ENCODE.  It is also hard to modify a command file
+protected with ENCODE.  The file is reduced in size as all
+indenting and comments preceded by * are removed.  In addition
+comments after the END statements are removed.  Example:
+
+ENDIF .NOT. green
+
+     Becomes a single byte for the reserved word ENDIF.  The
+".NOT. green" is purely a comment that repeats the conditions that
+began the IF statement that should read:
+
+IF .NOT. green
+
+     Such comments make a program easier to read but will slow
+down operation as dBASE II reads program lines from the disk as
+they are executed.  The latest versions of Ashton-Tate's DBCODE
+and Gene Head's DB-SQZ5 that I have seen leave these comments in.
+     Comments beginning with the reserved word NOTE are left in.
+This gives the programmer a way of marking a file with his name
+or copyright in a way that can only be listed with DBSOURCE.
+     You can also label a file by enclosing a message in between
+TEXT and ENDTEXT.  This leaves all lines between TEXT and ENDTEXT
+as in the source file.  ENDTEXT may be abbreviated to ENDT example:
+
+TEXT
+		(C) 1985 by Croggle Software, Inc.
+ENDTEXT
+
+     Caution should be taken that the ENDTEXT is included.  If
+omitted, all of the remaining file will not be encoded.  The
+command TEXT shuts off encoding, ENDTEXT turns it on again.
+Indentation within the TEXT area will be left as in the source
+file.  Use this feature as little as you can.  The extra lines
+will slow down the program a little for each line added.  DB-Encode
+requires that source files have initial reserved words written
+out in full.  This insures a fully readable source file.  dBASE
+looks for only the first four letters of a reserved word.
+Reserved words in any postion on a line but the first word may be
+abbreviated.  DB-Encode does not check syntax on anything but the
+first word in each line of dBASE command files.
+     DB-Encode also requires that you name the source file with the
+extension .SRC.  This keeps the programmer from mistaking the
+pseudo compiled (.CMD) file for the source (.SRC) file.  If a
+file is requested and the .CMD file already exists, you will be
+warned:
+
+		    []=========[]
+		    [] WARNING []
+		    []=========[]
+
+
+SAMPLE.CMD already exists!  If you answer NO, the old SAMPLE.CMD
+will be renamed to SAMPLE.OLD
+
+
+Do you wish to overwrite SAMPLE.CMD (Yes/No/Quit)?
+
+     If you choose not to overwrite SAMPLE.CMD, the old file will
+be renamed SAMPLE.OLD.  The .OLD extension is used to keep the
+encoded backup files distinct from the source backup which would
+have a .BAK extension.  If you opt to quit, you will be taken to
+the end of the program and see:
+
+Are you finished?
+
+     A <RETURN>, or any answer but yes, will return you to the
+start screen to try again.
+
+
+			  Macro Support
+
+     Unlike Ashton-Tate's DBCODE, ENCODE provides full macro
+support.  It is recommended that macros be used only when other
+means are not vailable.  Macro operation is slower in most cases.
+A line starting with a macro will not be encoded.  This will slow
+the program even more.  You must retain the "&" as the macro
+symbol if you want to start a line with a macro.  ENCODE will
+not recognize a different symbol at the start of a line, even if
+dBASE II can be configured to do so.  If macros are confined to
+locations other than the start of a line, the "&" may be changed.
+     ENCODE requires separate encoding of any sub files you wish
+to use in a dBASE II program package.  It is not required that
+all sub programs be encoded when operation is with dBASE II, but
+it should be done for speed.  Only the command files with the
+extension .CMD are encoded.
+
+
+			    Help File
+
+     The help file may be called from ENCODE by entering a "?"
+at the title screen.
+
+Filename.SRC or Drive:? ?
+
+
+			     Option
+
+N	No console display of input file.  This is the only option.
+
+     The N option must preceded by a space:
+
+Filename.SRC or Drive:? SAMPLE.SRC N
+
+======================================================================
+
+
+		    COPYRIGHT AND LIMITATIONS
+
+     All of the above programs may be copied for private,
+noncommercial use, provided that all copyright notices remain
+intact.  In fact, making copies for your friends is encouraged.
+They may also be included in distribution disks from non-profit
+computer clubs, if only a nominal charge of less than $20.00 per
+disk is charged to cover costs of disk, copying and shipping.
+These programs are NOT "Public Domain".  To release a program to
+public domain causes all control of distribution and sale to be
+voided.  Any sale of these programs that does not comply with
+these conditions will be prosecuted.
+     None of the programs named at the beginning of this library
+documentation may be sold for profit without the written
+permission of the author:
+
+			Merlin R. Null
+			P. O. Box 9422
+			N. Hollywood, CA 91609
+			(818)762-1429
+
+     A small donation, like $5.00, would help me with maintaining
+these programs, but is not required.  These programs were
+written for the hobbyist, not with profit in mind.
+
+     Please contact me if you have any suggestions, gripes or
+comments about any of the DB-UTIL programs.
+
+======================================================================
+
+dBASE II, dBASE III, RUNTIME and DBCODE are trademarks of Ashton-Tate
+MBASIC is a trademark of Microsoft
+WordStar is a trademark of MicroPro
+

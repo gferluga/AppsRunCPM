@@ -1,0 +1,29 @@
+	org	0100h
+	jp	start
+;;;;;;;;;;
+	include bdosequ.lib
+	include	display.lib
+;;;;;;;;;;
+fcb
+	db 00h,'F35     COM',00h,'                     '
+result
+	db 'Result is: ',00h
+crlf
+	db 0Dh,0Ah,00h
+;
+start
+	ld	hl,fcb+1
+	call dspstr
+	ld	hl,crlf
+	call dspstr
+;
+	ld	c,size
+	ld	de,fcb
+	call bdos
+;
+	ld	hl,result
+	call dsp2hex
+	ld	hl,crlf
+	call dspstr
+	ret
+;

@@ -1,0 +1,124 @@
+
+SD-RCPM.INF             USING SD.COM on an RCPM                3 Feb 89
+
+
+Information on how to  install/use  SD on RCPM systems.  Read the SD.HIS
+file for the history of updates to this program.
+
+
+    NOTE:  May be assembled with ASM, LASM, M80, MAC, or SLRMAC
+
+
+        Any of three option markers may be used (/, [ or $):
+
+        SD $A    SD *.COM $A  -  DRI's  "MAC-type"
+        SD /A    SD *.COM /A  -  UNIX or ZCPR3 type
+        SD [A    SD *.COM[A   -  CP/M+ type, note no space after
+                                 FN/FT - a A trailing "]" may be
+                                 used, needed but is not needed.
+                                 Example:  SD *.COM[AND]
+
+
+        File lengths over four megabytes are read correctly.
+
+        Files may be shown in vertical or horizontal listings.
+
+
+RCPM-SPECIFIC OPTIONS:
+----------------------
+There are a number of ways to limit the maximum drive and user area that
+the remote user can access.  The Sysop may set his own access different-
+ly.  The list  of drives and users areas  in the "LODRV" area  overrides
+all other  selections.  Set that to the highest drive the Sysop wants to
+access for his own local needs.  Also set  the maximum user in the LODRV
+table for the Sysop's use.
+
+The remote user can then be limited by the BBS system, by BYE5 or by the
+type of CCP replacement you might have, such as ZCMD, ZCPR33, etc.
+
+If assembled with the ZCPR33 equate set YES, then the max drive/user and
+wheel value as contained in the ZCPR3 ENV will be used as the limiting
+values (over-ridden by LODRV area). This implies a Z3 system, of course.
+
+NOTE: for use on ZCPR34+ systems that have the Drive Vector, there is
+      an internal equate DRVVEC that will allow the program to dynamically
+      build it's LODRV/HIDRV table. Locking out drives not set in the
+      vector and setting those that are to Z3's max user from the
+      environment if no wheel, and to MXZUSR if wheel is on.
+
+
+Normally the  MAXDRV, MAXUR and WHEEL  options  are all set YES for RCPM
+use.  The potential flexibility is tremendous.
+
+MAXDRV  EQU     no              ;*Yes if MAXD byte is supported
+MAXUR   EQU     no              ;*Yes if MAXU byte is supported
+WHEEL   EQU     no              ;*Yes if using ZCPR wheel byte
+
+MXDRV   EQU     3DH             ;*Set to max drive location if MAXDRV=Yes
+MXUSR   EQU     3FH             ;*Set to max user  location if MAXUR=Yes
+WHLOC   EQU     3EH             ;*Set to wheel location if WHEEL=Yes
+    ( the above three are don't cares with ZCPR33 set YES )
+
+MXZUSR  EQU     15              ; Maximum user # allowed with WEEL set
+
+
+WHEEL SPECIFIC OPTIONS:
+----------------------
+The following 6 options  would normally be set NO for RCPM use. They are
+then available if/when the  WHEEL byte is set high.  (If set YES, ignore
+the WHEEL byte value and area always available.  The USER is normally of
+no use on a RCPM system where disks are never replaced.)
+
+USEF    EQU     no              ;*Allow making a local disk copy?
+USEO    EQU     no              ;*Allow showing only $SYS files?
+USEP    EQU     no              ;*Allow making local printer listing?
+USER    EQU     no              ;*Allow disk system reset? (For floppies)
+USES    EQU     no              ;*Allow showing all, AND $SYS files?
+USEA	EQU	no		;*Allow specifying file attrib's 1-4
+
+GENERAL COMMENTS:
+----------------
+Up to 19 command line options  may be specified.  (They are mentioned in
+detail in the .DOC file but are:
+
+              A,C,D,F,H,L,N,O,P,Q,R,S,T,V,X,1,2,3,4
+
+SD adds another 7 command line options available if used under Z80DOS:
+
+		      =,+,-,!,%,@,Z
+
+They may be either  upper or lower case.  Their  order is not important,
+For example either $AND or $DNA are equally effective.  If using the '['
+separator (normal for CP/M+ systems) do not use a space:
+
+        B>SD [A         ok, shows all files this drive/user area
+        B>SD *.COM[A    note, no space here, else will not work
+
+
+SPECIAL OPTIONS:
+----------------
+PRBRDR  - prints a semi-border around the left side of library file mem-
+          ber lines if set  YES.  This makes  for a more readable format
+          when displaying a large number of LBR files.
+
+USELC   - can be set  to put  the attribute  character(s) into lowercase
+          for $SYS, $R/O and $ARC attribute bits.
+
+USELCW  - if set NO, prevents displaying attributes in lower case unless
+          wheel byte is active.  (Sysop is using the system.)
+
+REVID   - selects  reverse video  on the  display, if available, to show
+          the attribute characters $SYS, $R/O and $ARC.
+
+	  NOTE: For users of ZCRP3+ REVID string is now automatically filled
+	        in from the the currently loaded TCAP.
+
+ULINE   - selects  underlining to be used  to display the status line of
+          the directory.
+
+SHOPUB  - allows directory display of ZRDOS Public user areas.
+
+WHLPUB  - makes SHOPUB wheel oriented.
+
+--------------------------------- end ----------------------------------
+
